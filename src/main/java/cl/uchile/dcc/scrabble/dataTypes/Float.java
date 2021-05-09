@@ -5,10 +5,10 @@ public class Float implements IdataTypes{
 
     /**
      * The constructor of the class
-     * @param n The value that will be assigned to the instance
+     * @param x The value that will be assigned to the instance
      */
-    public Float(double n){
-        this.value = n;
+    public Float(double x){
+        this.value = x;
     }
 
     @Override

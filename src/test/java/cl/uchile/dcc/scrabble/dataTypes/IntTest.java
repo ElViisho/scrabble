@@ -8,9 +8,9 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-class FloatTest {
-    private Float x;
-    private double xValue;
+class IntTest {
+    private Int n;
+    private int nValue;
     private int seed;
     private Random rng;
 
@@ -22,8 +22,8 @@ class FloatTest {
     void setUp(){
         seed = new Random().nextInt();
         rng = new Random(seed);
-        xValue = rng.nextDouble();
-        x = new Float(xValue);
+        nValue = rng.nextInt();
+        n = new Int(nValue);
     }
 
     /**
@@ -33,16 +33,16 @@ class FloatTest {
      */
     @RepeatedTest(25)
     void stringsTest(){
-        var expectedX = new Float(xValue);
-        assertEquals(expectedX, x);
-        var floatToString = x.toString();
-        assert(floatToString instanceof String);
-        assertEquals(expectedX.toString(), floatToString);
-        double newX;
+        var expectedN = new Int(nValue);
+        assertEquals(expectedN, n);
+        var intToString = n.toString();
+        assert(intToString instanceof String);
+        assertEquals(expectedN.toString(), intToString);
+        int newN;
         do {
-            newX = rng.nextDouble();
-        } while (newX == xValue);
-        var differentX = new Float(newX);
-        assertNotEquals(differentX, x);
+            newN = rng.nextInt();
+        } while (newN == nValue);
+        var differentN = new Int(newN);
+        assertNotEquals(differentN, n);
     }
 }
