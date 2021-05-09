@@ -1,6 +1,10 @@
 package cl.uchile.dcc.scrabble.dataTypes;
 
-public class Int implements IdataTypes{
+/**
+ * The Scrabble Int class. It encapsulates a native Java int
+ * that has the value of the instance
+ */
+public class Int extends AbstractDataType{
     private final int value;
 
     /**
@@ -8,21 +12,8 @@ public class Int implements IdataTypes{
      * @param n The value that will be assigned to the instance
      */
     public Int(int n){
+        super(Integer.toString(n));
         this.value = n;
     }
 
-    @Override
-    public boolean equals(Object obj){
-        if (obj instanceof Int){
-            var o = (Int) obj;
-            return o.value == this.value;
-        }
-        return false;
-    }
-
-    @Override
-    public String toString(){
-        Integer n = this.value;
-        return n.toString();
-    }
 }

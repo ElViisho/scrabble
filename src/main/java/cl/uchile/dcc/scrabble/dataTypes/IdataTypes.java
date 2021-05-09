@@ -1,7 +1,7 @@
 package cl.uchile.dcc.scrabble.dataTypes;
 
 /**
- * Interface to be implemented by the different Scrabble data types
+ * Interface to be implemented by the abstract Scrabble data type class
  */
 public interface IdataTypes {
     /**

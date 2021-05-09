@@ -1,6 +1,10 @@
 package cl.uchile.dcc.scrabble.dataTypes;
 
-public class Float implements IdataTypes{
+/**
+ * The Scrabble Float class. It encapsulates a native Java double
+ * that has the value of the instance
+ */
+public class Float extends AbstractDataType{
     private final double value;
 
     /**
@@ -8,21 +12,7 @@ public class Float implements IdataTypes{
      * @param x The value that will be assigned to the instance
      */
     public Float(double x){
+        super(Double.toString(x));
         this.value = x;
-    }
-
-    @Override
-    public boolean equals(Object obj){
-        if (obj instanceof Float){
-            var o = (Float) obj;
-            return o.value == this.value;
-        }
-        return false;
-    }
-
-    @Override
-    public String toString(){
-        Double x = this.value;
-        return x.toString();
     }
 }
