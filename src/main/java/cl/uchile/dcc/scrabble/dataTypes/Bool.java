@@ -25,7 +25,7 @@ public class Bool implements IdataTypes {
 
     @Override
     public String toString() {
-        if (this.value) return "true";
-        return "false";
+        Boolean x = this.value;
+        return x.toString();
     }
 }

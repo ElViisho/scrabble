@@ -5,12 +5,6 @@ package cl.uchile.dcc.scrabble.dataTypes;
  */
 public interface IdataTypes {
     /**
-     * @return The value inside an instance of an object
-     *         in the form of a Java String
-     */
-    @Override
-    String toString();
-    /**
      * Compares the values of the current instance with another object's
      * to see if they're equal
      * @param obj the object to be compared with
@@ -18,4 +12,11 @@ public interface IdataTypes {
      */
     @Override
     boolean equals(Object obj);
+
+    /**
+     * @return The value inside an instance of an object
+     *         in the form of a Java String
+     */
+    @Override
+    String toString();
 }

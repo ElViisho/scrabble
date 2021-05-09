@@ -9,9 +9,9 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-public class scrabbleStringTest {
-    private scrabbleString string;
-    private String str;
+class FloatTest {
+    private Float x;
+    private double xValue;
     private int seed;
     private Random rng;
 
@@ -23,9 +23,8 @@ public class scrabbleStringTest {
     void setUp(){
         seed = new Random().nextInt();
         rng = new Random(seed);
-        int strSize = rng.nextInt(20);
-        str = RandomStringUtils.random(strSize, 0, Character.MAX_CODE_POINT, true, false, null, rng);
-        string = new scrabbleString(str);
+        xValue = rng.nextDouble();
+        x = new Float(xValue);
     }
 
     /**
@@ -35,16 +34,16 @@ public class scrabbleStringTest {
      */
     @RepeatedTest(25)
     void stringsTest(){
-        var expectedString = new scrabbleString(str);
-        assertEquals(expectedString, string);
-        var stringToString = string.toString();
+        var expectedX = new Float(xValue);
+        assertEquals(expectedX, x);
+        var stringToString = x.toString();
         assert(stringToString instanceof String);
-        assertEquals(expectedString.toString(), stringToString);
-        String newStr;
+        assertEquals(expectedX.toString(), stringToString);
+        double newX;
         do {
-            newStr = RandomStringUtils.random(rng.nextInt(20), 0, Character.MAX_CODE_POINT, true, false, null, rng);
-        } while (newStr.equals(str));
-        var differentString = new scrabbleString(newStr);
-        assertNotEquals(differentString, string);
+            newX = rng.nextDouble();
+        } while (newX == xValue);
+        var differentX = new Float(newX);
+        assertNotEquals(differentX, x);
     }
 }
