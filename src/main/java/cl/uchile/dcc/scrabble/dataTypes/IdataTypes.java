@@ -14,9 +14,23 @@ public interface IdataTypes {
     boolean equals(Object obj);
 
     /**
+     * @return the hash code of the object
+     */
+    @Override
+    int hashCode();
+
+    /**
      * @return The value inside an instance of an object
      *         in the form of a Java String
      */
     @Override
     String toString();
+
+    scrabbleBool toBool();
+
+    scrabbleFloat toFloat();
+
+    scrabbleInt toInt();
+
+    scrabbleBinary toBinary();
 }

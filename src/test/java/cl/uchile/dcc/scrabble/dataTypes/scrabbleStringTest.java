@@ -37,14 +37,22 @@ public class scrabbleStringTest {
     void stringsTest(){
         var expectedString = new scrabbleString(str);
         assertEquals(expectedString, string);
-        var stringToString = string.toString();
-        assert(stringToString instanceof String);
-        assertEquals(expectedString.toString(), stringToString);
         String newStr;
         do {
             newStr = RandomStringUtils.random(rng.nextInt(20), 0, Character.MAX_CODE_POINT, true, false, null, rng);
         } while (newStr.equals(str));
         var differentString = new scrabbleString(newStr);
         assertNotEquals(differentString, string);
+    }
+
+    /**
+     * Test for checking the toString() method
+     */
+    @RepeatedTest(25)
+    void toStringTest(){
+        var expectedString = new scrabbleString(str);
+        var stringToString = string.toString();
+        assert(stringToString instanceof String);
+        assertEquals(expectedString.toString(), stringToString);
     }
 }

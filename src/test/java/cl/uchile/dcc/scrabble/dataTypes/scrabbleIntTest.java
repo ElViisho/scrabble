@@ -8,9 +8,9 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-class FloatTest {
-    private Float x;
-    private double xValue;
+class scrabbleIntTest {
+    private scrabbleInt n;
+    private int nValue;
     private int seed;
     private Random rng;
 
@@ -22,8 +22,8 @@ class FloatTest {
     void setUp(){
         seed = new Random().nextInt();
         rng = new Random(seed);
-        xValue = rng.nextDouble();
-        x = new Float(xValue);
+        nValue = rng.nextInt();
+        n = new scrabbleInt(nValue);
     }
 
     /**
@@ -32,17 +32,25 @@ class FloatTest {
      * and also checks the toString method
      */
     @RepeatedTest(25)
-    void stringsTest(){
-        var expectedX = new Float(xValue);
-        assertEquals(expectedX, x);
-        var floatToString = x.toString();
-        assert(floatToString instanceof String);
-        assertEquals(expectedX.toString(), floatToString);
-        double newX;
+    void IntTest(){
+        var expectedN = new scrabbleInt(nValue);
+        assertEquals(expectedN, n);
+        int newN;
         do {
-            newX = rng.nextDouble();
-        } while (newX == xValue);
-        var differentX = new Float(newX);
-        assertNotEquals(differentX, x);
+            newN = rng.nextInt();
+        } while (newN == nValue);
+        var differentN = new scrabbleInt(newN);
+        assertNotEquals(differentN, n);
+    }
+
+    /**
+     * Test for checking the toString() method
+     */
+    @RepeatedTest(25)
+    void toStringTest(){
+        var expectedN = new scrabbleInt(nValue);
+        var intToString = n.toString();
+        assert(intToString instanceof String);
+        assertEquals(expectedN.toString(), intToString);
     }
 }

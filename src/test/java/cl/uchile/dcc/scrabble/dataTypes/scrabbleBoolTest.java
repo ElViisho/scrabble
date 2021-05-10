@@ -8,8 +8,8 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-class BoolTest {
-    private Bool bool;
+class scrabbleBoolTest {
+    private scrabbleBool bool;
     private boolean boolValue;
     private int seed;
     private Random rng;
@@ -23,7 +23,7 @@ class BoolTest {
         seed = new Random().nextInt();
         rng = new Random();
         boolValue = rng.nextBoolean();
-        bool = new Bool(boolValue);
+        bool = new scrabbleBool(boolValue);
     }
 
     /**
@@ -33,18 +33,26 @@ class BoolTest {
      */
     @RepeatedTest(25)
     void boolTest() {
-        var expectedBool = new Bool(boolValue);
+        var expectedBool = new scrabbleBool(boolValue);
         assertEquals(expectedBool, bool);
-        var boolToString = bool.toString();
-        assert(boolToString instanceof String);
-        assertEquals(expectedBool.toString(), boolToString);
         boolean newBool;
         do {
             newBool = rng.nextBoolean();
         } while (newBool == boolValue);
-        var differentBool = new Bool(newBool);
+        var differentBool = new scrabbleBool(newBool);
         assertNotEquals(differentBool, bool);
         assertNotEquals(differentBool.toString(), bool.toString());
+    }
+
+    /**
+     * Test for checking the toString() method
+     */
+    @RepeatedTest(25)
+    void toStringTest(){
+        var expectedBool = new scrabbleBool(boolValue);
+        var boolToString = bool.toString();
+        assert(boolToString instanceof String);
+        assertEquals(expectedBool.toString(), boolToString);
     }
 
 }

@@ -1,6 +1,8 @@
 package cl.uchile.dcc.scrabble.dataTypes;
 
 
+import java.util.Objects;
+
 /**
  * The abstract parent class of the different scrabble data types.
  * It implements the two methods that are common to all classes.
@@ -10,10 +12,9 @@ public abstract class AbstractDataType implements IdataTypes{
 
     /**
      * The constructor of the abstract class
-     * @param stringValue The value that will be assigned to the instance
      */
-    protected AbstractDataType(String stringValue) {
-        this.stringValue = stringValue;
+    protected AbstractDataType(String str) {
+        this.stringValue = str;
     }
 
     @Override
@@ -26,8 +27,28 @@ public abstract class AbstractDataType implements IdataTypes{
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(AbstractDataType.class);
+    }
+
+    @Override
     public String toString(){
         return this.stringValue;
     }
 
+    public scrabbleBool toBool() {
+        return null;
+    }
+
+    public scrabbleFloat toFloat() {
+        return null;
+    }
+
+    public scrabbleInt toInt() {
+        return null;
+    }
+
+    public scrabbleBinary toBinary() {
+        return null;
+    }
 }
