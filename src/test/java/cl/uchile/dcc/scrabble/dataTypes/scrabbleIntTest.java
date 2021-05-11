@@ -53,4 +53,37 @@ class scrabbleIntTest {
         assert(intToString instanceof String);
         assertEquals(expectedN.toString(), intToString);
     }
+
+    /**
+     * Test for checking the toScrabString() method
+     */
+    @RepeatedTest(25)
+    void toScrabStringTest(){
+        var expectedInt = new scrabbleInt(nValue);
+        var scrabString = n.toScrabString();
+        assert(scrabString instanceof scrabbleString);
+        assertEquals(expectedInt.toScrabString(), scrabString);
+    }
+
+    /**
+     * Test for checking the toScrabFloat() method
+     */
+    @RepeatedTest(25)
+    void toScrabFloatTest(){
+        var expectedInt = new scrabbleInt(nValue);
+        var scrabFloat = n.toScrabFloat();
+        assert(scrabFloat instanceof scrabbleFloat);
+        assertEquals(expectedInt.toScrabFloat(), scrabFloat);
+    }
+
+    /**
+     * Test for checking the toScrabInt() method
+     */
+    @RepeatedTest(25)
+    void toScrabIntTest(){
+        var expectedInt = new scrabbleInt(nValue);
+        var scrabInt = n.toScrabInt();
+        assert(scrabInt instanceof scrabbleInt);
+        assertEquals(expectedInt.toScrabInt(), scrabInt);
+    }
 }

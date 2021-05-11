@@ -36,19 +36,28 @@ public abstract class AbstractDataType implements IdataTypes{
         return this.stringValue;
     }
 
-    public scrabbleBool toBool() {
+    @Override
+    public scrabbleString toScrabString() {
         return null;
     }
 
-    public scrabbleFloat toFloat() {
+    @Override
+    public scrabbleBool toScrabBool() {
         return null;
     }
 
-    public scrabbleInt toInt() {
+    @Override
+    public scrabbleFloat toScrabFloat() {
         return null;
     }
 
-    public scrabbleBinary toBinary() {
+    @Override
+    public scrabbleInt toScrabInt() {
+        return null;
+    }
+
+    @Override
+    public scrabbleBinary toScrabBinary() {
         return null;
     }
 }

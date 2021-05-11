@@ -55,4 +55,26 @@ class scrabbleBoolTest {
         assertEquals(expectedBool.toString(), boolToString);
     }
 
+    /**
+     * Test for checking the toScrabString() method
+     */
+    @RepeatedTest(25)
+    void toScrabStringTest(){
+        var expectedBool = new scrabbleBool(boolValue);
+        var scrabString = bool.toScrabString();
+        assert(scrabString instanceof scrabbleString);
+        assertEquals(expectedBool.toScrabString(), scrabString);
+    }
+
+    /**
+     * Test for checking the toScrabBool() method
+     */
+    @RepeatedTest(25)
+    void toScrabBoolTest(){
+        var expectedBool = new scrabbleBool(boolValue);
+        var scrabBool = bool.toScrabBool();
+        assert(scrabBool instanceof scrabbleBool);
+        assertEquals(expectedBool.toScrabBool(), scrabBool);
+    }
+
 }

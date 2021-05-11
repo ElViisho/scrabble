@@ -55,4 +55,15 @@ public class scrabbleStringTest {
         assert(stringToString instanceof String);
         assertEquals(expectedString.toString(), stringToString);
     }
+
+    /**
+     * Test for checking the toScrabString() method
+     */
+    @RepeatedTest(25)
+    void toScrabStringTest(){
+        var expectedString = new scrabbleString(str);
+        var scrabString = string.toScrabString();
+        assert(scrabString instanceof scrabbleString);
+        assertEquals(expectedString.toScrabString(), scrabString);
+    }
 }

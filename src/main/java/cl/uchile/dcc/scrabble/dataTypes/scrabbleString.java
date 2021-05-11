@@ -16,4 +16,8 @@ public class scrabbleString extends AbstractDataType {
         this.value = str;
     }
 
+    @Override
+    public scrabbleString toScrabString() {
+        return this;
+    }
 }

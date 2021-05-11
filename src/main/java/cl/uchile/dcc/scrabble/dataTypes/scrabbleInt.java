@@ -16,4 +16,19 @@ public class scrabbleInt extends AbstractDataType{
         this.value = n;
     }
 
+    @Override
+    public scrabbleString toScrabString() {
+        String s = String.valueOf(value);
+        return new scrabbleString(s);
+    }
+
+    @Override
+    public scrabbleFloat toScrabFloat() {
+        return new scrabbleFloat(value);
+    }
+
+    @Override
+    public scrabbleInt toScrabInt() {
+        return this;
+    }
 }

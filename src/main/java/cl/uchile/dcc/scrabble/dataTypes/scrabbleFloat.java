@@ -15,4 +15,15 @@ public class scrabbleFloat extends AbstractDataType{
         super(Double.toString(x));
         this.value = x;
     }
+
+    @Override
+    public scrabbleString toScrabString() {
+        String s = String.valueOf(value);
+        return new scrabbleString(s);
+    }
+
+    @Override
+    public scrabbleFloat toScrabFloat() {
+        return this;
+    }
 }

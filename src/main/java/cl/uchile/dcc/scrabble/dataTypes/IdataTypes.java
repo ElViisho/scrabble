@@ -26,11 +26,13 @@ public interface IdataTypes {
     @Override
     String toString();
 
-    scrabbleBool toBool();
+    scrabbleString toScrabString();
 
-    scrabbleFloat toFloat();
+    scrabbleBool toScrabBool();
 
-    scrabbleInt toInt();
+    scrabbleFloat toScrabFloat();
 
-    scrabbleBinary toBinary();
+    scrabbleInt toScrabInt();
+
+    scrabbleBinary toScrabBinary();
 }

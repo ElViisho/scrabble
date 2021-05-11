@@ -63,5 +63,26 @@ class scrabbleBinaryTest {
         assertEquals(expectedBin.toString(), stringToString);
     }
 
+    /**
+     * Test for checking the toScrabString() method
+     */
+    @RepeatedTest(25)
+    void toScrabStringTest(){
+        var expectedBin = new scrabbleBinary(binValue);
+        var scrabString = bin.toScrabString();
+        assert(scrabString instanceof scrabbleString);
+        assertEquals(expectedBin.toScrabString(), scrabString);
+    }
+
+    /**
+     * Test for checking the toScrabBinary() method
+     */
+    @RepeatedTest(25)
+    void toScrabBinaryTest(){
+        var expectedBin = new scrabbleBinary(binValue);
+        var scrabBin = bin.toScrabBinary();
+        assert(scrabBin instanceof scrabbleBinary);
+        assertEquals(expectedBin.toScrabBinary(), scrabBin);
+    }
 
 }

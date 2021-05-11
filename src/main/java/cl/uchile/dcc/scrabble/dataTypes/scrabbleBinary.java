@@ -16,4 +16,13 @@ public class scrabbleBinary extends AbstractDataType{
         this.value = str;
     }
 
+    @Override
+    public scrabbleString toScrabString() {
+        return new scrabbleString(value);
+    }
+
+    @Override
+    public scrabbleBinary toScrabBinary() {
+        return this;
+    }
 }

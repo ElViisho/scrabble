@@ -16,4 +16,15 @@ public class scrabbleBool extends AbstractDataType {
         this.value = bool;
     }
 
+    @Override
+    public scrabbleString toScrabString() {
+        String s = String.valueOf(value);
+        return new scrabbleString(s);
+    }
+
+    @Override
+    public scrabbleBool toScrabBool(){
+        return this;
+    }
+
 }
