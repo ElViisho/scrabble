@@ -66,4 +66,36 @@ public class scrabbleStringTest {
         assert(scrabString instanceof scrabbleString);
         assertEquals(expectedString.toScrabString(), scrabString);
     }
+
+    /**
+     * Test for checking the toScrabBool() method
+     */
+    @RepeatedTest(25)
+    void toScrabBoolTest(){
+        assert(string.toScrabBool() == null);
+    }
+
+    /**
+     * Test for checking the toScrabFloat() method
+     */
+    @RepeatedTest(25)
+    void toScrabFloatTest(){
+        assert(string.toScrabFloat() == null);
+    }
+
+    /**
+     * Test for checking the toScrabInt() method
+     */
+    @RepeatedTest(25)
+    void toScrabIntTest(){
+        assert(string.toScrabInt() == null);
+    }
+
+    /**
+     * Test for checking the toScrabBinary() method
+     */
+    @RepeatedTest(25)
+    void toScrabBinaryTest(){
+        assert(string.toScrabBinary() == null);
+    }
 }

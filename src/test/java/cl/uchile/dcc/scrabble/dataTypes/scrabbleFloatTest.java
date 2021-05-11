@@ -66,6 +66,14 @@ class scrabbleFloatTest {
     }
 
     /**
+     * Test for checking the toScrabBool() method
+     */
+    @RepeatedTest(25)
+    void toScrabBoolTest(){
+        assert(x.toScrabBool() == null);
+    }
+
+    /**
      * Test for checking the toScrabFloat() method
      */
     @RepeatedTest(25)
@@ -75,4 +83,22 @@ class scrabbleFloatTest {
         assert(scrabFloat instanceof scrabbleFloat);
         assertEquals(expectedFloat.toScrabFloat(), scrabFloat);
     }
+
+    /**
+     * Test for checking the toScrabInt() method
+     */
+    @RepeatedTest(25)
+    void toScrabIntTest(){
+        assert(x.toScrabInt() == null);
+    }
+
+    /**
+     * Test for checking the toScrabBinary() method
+     */
+    @RepeatedTest(25)
+    void toScrabBinaryTest(){
+        assert(x.toScrabBinary() == null);
+    }
+
+
 }

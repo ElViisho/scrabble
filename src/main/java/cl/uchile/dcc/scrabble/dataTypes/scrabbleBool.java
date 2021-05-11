@@ -12,8 +12,8 @@ public class scrabbleBool extends AbstractDataType {
      * @param bool The value that will be assigned to the instance
      */
     public scrabbleBool(boolean bool){
-        super(Boolean.toString(bool));
         this.value = bool;
+        super.value = this.value;
     }
 
     @Override

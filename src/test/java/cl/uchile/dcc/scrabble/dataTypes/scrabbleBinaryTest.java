@@ -75,6 +75,30 @@ class scrabbleBinaryTest {
     }
 
     /**
+     * Test for checking the toScrabBool() method
+     */
+    @RepeatedTest(25)
+    void toScrabBoolTest(){
+        assert(bin.toScrabBool() == null);
+    }
+
+    /**
+     * Test for checking the toScrabFloat() method
+     */
+    @RepeatedTest(25)
+    void toScrabFloatTest(){
+        assert(bin.toScrabFloat() == null);
+    }
+
+    /**
+     * Test for checking the toScrabInt() method
+     */
+    @RepeatedTest(25)
+    void toScrabIntTest(){
+        assert(bin.toScrabInt() == null);
+    }
+
+    /**
      * Test for checking the toScrabBinary() method
      */
     @RepeatedTest(25)

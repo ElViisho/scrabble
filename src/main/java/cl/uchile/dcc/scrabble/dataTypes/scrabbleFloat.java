@@ -12,8 +12,8 @@ public class scrabbleFloat extends AbstractDataType{
      * @param x The value that will be assigned to the instance
      */
     public scrabbleFloat(double x){
-        super(Double.toString(x));
         this.value = x;
+        super.value = this.value;
     }
 
     @Override

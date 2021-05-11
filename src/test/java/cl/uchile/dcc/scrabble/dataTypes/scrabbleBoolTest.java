@@ -77,4 +77,28 @@ class scrabbleBoolTest {
         assertEquals(expectedBool.toScrabBool(), scrabBool);
     }
 
+    /**
+     * Test for checking the toScrabFloat() method
+     */
+    @RepeatedTest(25)
+    void toScrabFloatTest(){
+        assert(bool.toScrabFloat() == null);
+    }
+
+    /**
+     * Test for checking the toScrabInt() method
+     */
+    @RepeatedTest(25)
+    void toScrabIntTest(){
+        assert(bool.toScrabInt() == null);
+    }
+
+    /**
+     * Test for checking the toScrabBinary() method
+     */
+    @RepeatedTest(25)
+    void toScrabBinaryTest(){
+        assert(bool.toScrabBinary() == null);
+    }
+
 }

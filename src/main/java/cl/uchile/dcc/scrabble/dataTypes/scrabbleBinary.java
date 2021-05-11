@@ -12,8 +12,8 @@ public class scrabbleBinary extends AbstractDataType{
      * @param str The value that will be assigned to the instance
      */
     public scrabbleBinary(String str) {
-        super(str);
         this.value = str;
+        super.value = this.value;
     }
 
     @Override

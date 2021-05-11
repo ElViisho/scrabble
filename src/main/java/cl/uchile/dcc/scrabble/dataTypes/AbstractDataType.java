@@ -8,20 +8,19 @@ import java.util.Objects;
  * It implements the two methods that are common to all classes.
  */
 public abstract class AbstractDataType implements IdataTypes{
-    protected String stringValue;
+    protected Object value;
 
     /**
      * The constructor of the abstract class
      */
-    protected AbstractDataType(String str) {
-        this.stringValue = str;
+    protected AbstractDataType() {
     }
 
     @Override
     public boolean equals(Object obj){
         if (obj.getClass() == this.getClass()){
             var o = (AbstractDataType) obj;
-            return o.stringValue.equals(this.stringValue);
+            return o.value.equals(this.value);
         }
         return false;
     }
@@ -33,7 +32,7 @@ public abstract class AbstractDataType implements IdataTypes{
 
     @Override
     public String toString(){
-        return this.stringValue;
+        return String.valueOf(value);
     }
 
     @Override

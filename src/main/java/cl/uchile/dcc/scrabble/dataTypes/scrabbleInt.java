@@ -12,8 +12,8 @@ public class scrabbleInt extends AbstractDataType{
      * @param n The value that will be assigned to the instance
      */
     public scrabbleInt(int n){
-        super(Integer.toString(n));
         this.value = n;
+        super.value = this.value;
     }
 
     @Override
