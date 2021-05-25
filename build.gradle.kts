@@ -44,6 +44,7 @@ dependencies {
         group = "org.junit.jupiter", name = "junit-jupiter-engine",
         version = junitVersion
     )
+	testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.8.0-M1")
     implementation(
         group = "org.apache.commons",
         name = "commons-lang3",
