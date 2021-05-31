@@ -111,8 +111,8 @@ class scrabbleFloatTest {
         scrabbleFloat expected2 = new scrabbleFloat(xValue + 6);
         assertEquals(expected2, suma2);
 
-        var suma3 = x.sumBinary(new scrabbleBinary("1100010"));
-        scrabbleFloat expected3 = new scrabbleFloat(xValue + 98);
+        var suma3 = x.sumBinary(new scrabbleBinary("11100010"));
+        scrabbleFloat expected3 = new scrabbleFloat(xValue - 30);
         assertEquals(expected3, suma3);
     }
 
@@ -126,8 +126,8 @@ class scrabbleFloatTest {
         scrabbleFloat expected2 = new scrabbleFloat(xValue - 16);
         assertEquals(expected2, subs2);
 
-        var subs3 = x.subsBinary(new scrabbleBinary("1101"));
-        scrabbleFloat expected3 = new scrabbleFloat(xValue - 13);
+        var subs3 = x.subsBinary(new scrabbleBinary("11110011"));
+        scrabbleFloat expected3 = new scrabbleFloat(xValue + 13);
         assertEquals(expected3, subs3);
     }
 
@@ -141,7 +141,7 @@ class scrabbleFloatTest {
         scrabbleFloat expected2 = new scrabbleFloat(xValue * 7);
         assertEquals(expected2, mult2);
 
-        var mult3 = x.multBinary(new scrabbleBinary("11010010"));
+        var mult3 = x.multBinary(new scrabbleBinary("011010010"));
         scrabbleFloat expected3 = new scrabbleFloat(xValue * 210);
         assertEquals(expected3, mult3);
     }
@@ -156,7 +156,7 @@ class scrabbleFloatTest {
         scrabbleFloat expected2 = new scrabbleFloat(xValue / 69);
         assertEquals(expected2, div2);
 
-        var div3 = x.divBinary(new scrabbleBinary("11011"));
+        var div3 = x.divBinary(new scrabbleBinary("011011"));
         scrabbleFloat expected3 = new scrabbleFloat(xValue / 27);
         assertEquals(expected3, div3);
     }

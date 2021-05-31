@@ -77,44 +77,19 @@ public class scrabbleFloat extends AbstractDataType{
     }
 
 
-
     public scrabbleFloat sumBinary(scrabbleBinary bin){
-        int length = bin.getValue().length();
-        int n = 0;
-        char[] arr = bin.getValue().toCharArray();
-        for (int i=length-1; i>=0; i--) {
-            if (arr[i] == '1') n+= Math.pow(2,length - 1 - i);
-        }
-        return new scrabbleFloat(this.value + n);
+        return new scrabbleFloat(this.value + bin.toScrabFloat().getValue());
     }
 
     public scrabbleFloat subsBinary(scrabbleBinary bin){
-        int length = bin.getValue().length();
-        int n = 0;
-        char[] arr = bin.getValue().toCharArray();
-        for (int i=length-1; i>=0; i--) {
-            if (arr[i] == '1') n+= Math.pow(2,length - 1 - i);
-        }
-        return new scrabbleFloat(this.value - n);
+        return new scrabbleFloat(this.value - bin.toScrabFloat().getValue());
     }
 
     public scrabbleFloat multBinary(scrabbleBinary bin){
-        int length = bin.getValue().length();
-        int n = 0;
-        char[] arr = bin.getValue().toCharArray();
-        for (int i=length-1; i>=0; i--) {
-            if (arr[i] == '1') n+= Math.pow(2,length - 1 - i);
-        }
-        return new scrabbleFloat(this.value * n);
+        return new scrabbleFloat(this.value * bin.toScrabFloat().getValue());
     }
 
     public scrabbleFloat divBinary(scrabbleBinary bin){
-        int length = bin.getValue().length();
-        int n = 0;
-        char[] arr = bin.getValue().toCharArray();
-        for (int i=length-1; i>=0; i--) {
-            if (arr[i] == '1') n+= Math.pow(2,length - 1 - i);
-        }
-        return new scrabbleFloat(this.value / n);
+        return new scrabbleFloat(this.value / bin.toScrabFloat().getValue());
     }
 }

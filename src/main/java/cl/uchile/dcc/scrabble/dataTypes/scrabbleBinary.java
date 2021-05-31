@@ -36,6 +36,45 @@ public class scrabbleBinary extends AbstractDataType{
     }
 
     @Override
+    public scrabbleInt toScrabInt(){
+        if (bitToInt(value.charAt(0)) == 0){
+            return new scrabbleInt(positiveBinToInt(value));
+        } else {
+            return new scrabbleInt(negativeBinaryToInt(value));
+        }
+    }
+
+    @Override
+    public scrabbleFloat toScrabFloat(){
+        if (bitToInt(value.charAt(0)) == 0){
+            return new scrabbleFloat(positiveBinToInt(value));
+        } else {
+            return new scrabbleFloat(negativeBinaryToInt(value));
+        }
+    }
+
+    private int negativeBinaryToInt(String binary){
+        int n = binary.length() - 1;
+        int w = -bitToInt(binary.charAt(0)) * (int) Math.pow(2, n);
+        for (int i=n, j=0; i>0; i--, j++){
+            w += (int) Math.pow(2,j) * (binary.charAt(i) == '1' ? 1: 0);
+        }
+        return w;
+    }
+
+    private int positiveBinToInt(String binary){
+        int w = 0;
+        for (int i=binary.length()-1, j=0; i>0; i--, j++){
+            w += (int) Math.pow(2,j) * bitToInt(binary.charAt(i));
+        }
+        return w;
+    }
+
+    private int bitToInt(char bit){
+        return bit == '0' ? 0 : 1;
+    }
+
+    @Override
     public scrabbleBinary toScrabBinary() {
         return this;
     }

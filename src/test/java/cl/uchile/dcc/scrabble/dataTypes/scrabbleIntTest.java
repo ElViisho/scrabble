@@ -116,7 +116,7 @@ class scrabbleIntTest {
         scrabbleInt expected2 = new scrabbleInt(nValue + 54);
         assertEquals(expected2, suma2);
 
-        var suma3 = n.sumBinary(new scrabbleBinary("110111101"));
+        var suma3 = n.sumBinary(new scrabbleBinary("0110111101"));
         scrabbleInt expected3 = new scrabbleInt(nValue + 445);
         assertEquals(expected3, suma3);
     }
@@ -131,7 +131,7 @@ class scrabbleIntTest {
         scrabbleInt expected2 = new scrabbleInt(nValue - 23);
         assertEquals(expected2, subs2);
 
-        var subs3 = n.subsBinary(new scrabbleBinary("110111"));
+        var subs3 = n.subsBinary(new scrabbleBinary("0110111"));
         scrabbleInt expected3 = new scrabbleInt(nValue - 55);
         assertEquals(expected3, subs3);
     }
@@ -146,8 +146,8 @@ class scrabbleIntTest {
         scrabbleInt expected2 = new scrabbleInt(nValue * 798);
         assertEquals(expected2, mult2);
 
-        var mult3 = n.multBinary(new scrabbleBinary("1101111"));
-        scrabbleInt expected3 = new scrabbleInt(nValue * 111);
+        var mult3 = n.multBinary(new scrabbleBinary("10010001"));
+        scrabbleInt expected3 = new scrabbleInt(nValue * -111);
         assertEquals(expected3, mult3);
     }
 
@@ -161,8 +161,8 @@ class scrabbleIntTest {
         scrabbleInt expected2 = new scrabbleInt(nValue / 8400021);
         assertEquals(expected2, div2);
 
-        var div3 = n.divBinary(new scrabbleBinary("1001"));
-        scrabbleInt expected3 = new scrabbleInt(nValue / 9);
+        var div3 = n.divBinary(new scrabbleBinary("11110111"));
+        scrabbleInt expected3 = new scrabbleInt(nValue / -9);
         assertEquals(expected3, div3);
     }
 }

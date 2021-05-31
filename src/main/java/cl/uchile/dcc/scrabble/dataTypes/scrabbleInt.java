@@ -84,42 +84,18 @@ public class scrabbleInt extends AbstractDataType{
 
 
     public scrabbleInt sumBinary(scrabbleBinary bin){
-        int length = bin.getValue().length();
-        int n = 0;
-        char[] arr = bin.getValue().toCharArray();
-        for (int i=length-1; i>=0; i--) {
-            if (arr[i] == '1') n+= Math.pow(2,length - 1 - i);
-        }
-        return new scrabbleInt(this.value + n);
+        return new scrabbleInt(this.value + bin.toScrabInt().getValue());
     }
 
     public scrabbleInt subsBinary(scrabbleBinary bin){
-        int length = bin.getValue().length();
-        int n = 0;
-        char[] arr = bin.getValue().toCharArray();
-        for (int i=length-1; i>=0; i--) {
-            if (arr[i] == '1') n+= Math.pow(2,length - 1 - i);
-        }
-        return new scrabbleInt(this.value - n);
+        return new scrabbleInt(this.value - bin.toScrabInt().getValue());
     }
 
     public scrabbleInt multBinary(scrabbleBinary bin){
-        int length = bin.getValue().length();
-        int n = 0;
-        char[] arr = bin.getValue().toCharArray();
-        for (int i=length-1; i>=0; i--) {
-            if (arr[i] == '1') n+= Math.pow(2,length - 1 - i);
-        }
-        return new scrabbleInt(this.value * n);
+        return new scrabbleInt(this.value * bin.toScrabInt().getValue());
     }
 
     public scrabbleInt divBinary(scrabbleBinary bin){
-        int length = bin.getValue().length();
-        int n = 0;
-        char[] arr = bin.getValue().toCharArray();
-        for (int i=length-1; i>=0; i--) {
-            if (arr[i] == '1') n+= Math.pow(2,length - 1 - i);
-        }
-        return new scrabbleInt(this.value / n);
+        return new scrabbleInt(this.value / bin.toScrabInt().getValue());
     }
 }
