@@ -78,4 +78,9 @@ public class scrabbleBinary extends AbstractDataType{
     public scrabbleBinary toScrabBinary() {
         return this;
     }
+
+
+
+
+
 }

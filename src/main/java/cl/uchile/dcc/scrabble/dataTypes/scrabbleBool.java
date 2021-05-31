@@ -62,7 +62,15 @@ public class scrabbleBool extends AbstractDataType {
     }
 
     public scrabbleBinary disjBinary(scrabbleBinary bin){
-        return new scrabbleBinary(bin.getValue());
+        if (!this.value){
+            return new scrabbleBinary(bin.getValue());
+        }
+        int length = bin.getValue().length();
+        char newArr[] = new char[length];
+        for (int i=0; i<length; i++) {
+            newArr[i] = '1';
+        }
+        return new scrabbleBinary(String.valueOf(newArr));
     }
 
 }

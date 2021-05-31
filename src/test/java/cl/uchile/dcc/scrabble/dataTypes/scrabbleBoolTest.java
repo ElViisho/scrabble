@@ -147,8 +147,9 @@ class scrabbleBoolTest {
         scrabbleBool F = new scrabbleBool(false);
 
         scrabbleBinary bin = new scrabbleBinary("1001011");
-        scrabbleBinary expected = new scrabbleBinary("1001011");
-        assertEquals(expected, T.disjBinary(bin));
-        assertEquals(expected, F.disjBinary(bin));
+        scrabbleBinary expected1 = new scrabbleBinary("1001011");
+        scrabbleBinary expected2 = new scrabbleBinary("1111111");
+        assertEquals(expected2, T.disjBinary(bin));
+        assertEquals(expected1, F.disjBinary(bin));
     }
 }
