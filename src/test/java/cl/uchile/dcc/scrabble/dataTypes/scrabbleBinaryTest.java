@@ -2,7 +2,6 @@ package cl.uchile.dcc.scrabble.dataTypes;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
@@ -15,6 +14,7 @@ class scrabbleBinaryTest {
     private int seed;
     private Random rng;
     private int strSize;
+    private final int N = 25;
 
     /**
      * The set up to be done before each test.
@@ -37,7 +37,7 @@ class scrabbleBinaryTest {
      * The different tests that check that two instances that have the same value
      * are considered equal and two with different values are considered different
      */
-    @RepeatedTest(25)
+    @RepeatedTest(N)
     void BinaryTest(){
         var expectedBin = new scrabbleBinary(binValue);
         assertEquals(expectedBin, bin);
@@ -57,64 +57,90 @@ class scrabbleBinaryTest {
     /**
      * Test for checking the toString() method
      */
-    @RepeatedTest(25)
+    @RepeatedTest(N)
     void toStringTest(){
-        var expectedBin = new scrabbleBinary(binValue);
         var stringToString = bin.toString();
-        assert(stringToString instanceof String);
-        assertEquals(expectedBin.toString(), stringToString);
+        assertEquals(bin.getValue(), stringToString);
     }
 
     /**
      * Test for checking the toScrabString() method
      */
-    @RepeatedTest(25)
+    @RepeatedTest(N)
     void toScrabStringTest(){
-        var expectedBin = new scrabbleBinary(binValue);
         var scrabString = bin.toScrabString();
-        assert(scrabString instanceof scrabbleString);
-        assertEquals(expectedBin.toScrabString(), scrabString);
+        assertEquals(new scrabbleString(bin.getValue()), scrabString);
     }
 
     /**
      * Test for checking the toScrabBool() method
      */
-    @RepeatedTest(25)
+    @RepeatedTest(N)
     void toScrabBoolTest(){
         assert(bin.toScrabBool() == null);
     }
 
     /**
-     * Test for checking the toScrabFloat() method
+     * Test for checking the toScrabInt() method
      */
-    @RepeatedTest(25)
-    void toScrabFloatTest(){
-        assert(bin.toScrabFloat() == null);
+    @RepeatedTest(N)
+    void toScrabIntTest(){
+        String value = bin.getValue();
+        if (value.charAt(0) == '1') {
+            value = bin.twosComplement().getValue();
+            value = "-" + value;
+        }
+        var expected = Integer.parseInt(value,2);
+        var scrabInt = bin.toScrabInt();
+        assertEquals(new scrabbleInt(expected), scrabInt);
     }
 
     /**
-     * Test for checking the toScrabInt() method
+     * Test for checking the toScrabFloat() method
      */
-    @RepeatedTest(25)
-    void toScrabIntTest(){
-        assert(bin.toScrabInt() == null);
+    @RepeatedTest(N)
+    void toScrabFloatTest(){
+        String value = bin.getValue();
+        if (value.charAt(0) == '1') {
+            value = bin.twosComplement().getValue();
+            value = "-" + value;
+        }
+        var expected = Integer.parseInt(value,2);
+        var scrabFloat = bin.toScrabFloat();
+        assertEquals(new scrabbleFloat(expected), scrabFloat);
     }
 
     /**
      * Test for checking the toScrabBinary() method
      */
-    @RepeatedTest(25)
+    @RepeatedTest(N)
     void toScrabBinaryTest(){
         var expectedBin = new scrabbleBinary(binValue);
         var scrabBin = bin.toScrabBinary();
-        assert(scrabBin instanceof scrabbleBinary);
         assertEquals(expectedBin.toScrabBinary(), scrabBin);
     }
 
-    @RepeatedTest(25)
+    @RepeatedTest(N)
     void negationTest(){
-        System.out.println(binValue);
-        System.out.println(bin.twosComplement().getValue());
+        String noBin = bin.getValue();
+        noBin = noBin.replace('0', '2').replace('1','0').replace('2','1');
+        assertEquals(new scrabbleBinary(noBin), bin.negation());
+    }
+
+    @RepeatedTest(N)
+    void conjBoolTest(){
+        scrabbleBool T = new scrabbleBool(true);
+        scrabbleBool F = new scrabbleBool(false);
+        assertEquals(bin, bin.conjBool(T));
+        assertEquals(new scrabbleBinary(bin.getValue().replace('1','0')), bin.conjBool(F));
+    }
+
+    @RepeatedTest(N)
+    void disjBoolTest(){
+        scrabbleBool T = new scrabbleBool(true);
+        scrabbleBool F = new scrabbleBool(false);
+        assertEquals(bin, bin.disjBool(F));
+        assertEquals(new scrabbleBinary(bin.getValue().replace('0','1')), bin.disjBool(T));
     }
 
 }
