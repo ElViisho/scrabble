@@ -1,5 +1,7 @@
 package cl.uchile.dcc.scrabble.dataTypes;
 
+import static java.lang.Math.abs;
+
 /**
  * The Scrabble Int class. It encapsulates a native Java int
  * that has the value of the instance
@@ -48,14 +50,22 @@ public class scrabbleInt extends AbstractDataType{
 
     @Override
     public scrabbleBinary toScrabBinary(){
-        int sumInt = value;
-        String sumStr = "";
-        while (sumInt > 0){
-            int resto = sumInt % 2;
-            sumStr = resto + sumStr;
-            sumInt = sumInt/2;
+        int intValue = abs(value);
+        String strValue = "";
+        while (intValue > 0){
+            int resto = intValue % 2;
+            strValue = resto + strValue;
+            intValue = intValue /2;
         }
-        return new scrabbleBinary(sumStr);
+        scrabbleBinary binValue = new scrabbleBinary(strValue);
+        if (value < 0) {
+            strValue = binValue.twosComplement().getValue();
+            while (strValue.length() < 32) {
+                strValue = '1' + strValue;
+            }
+            binValue = new scrabbleBinary(strValue);
+        }
+        return binValue;
     }
 
     public scrabbleFloat sumFloat(scrabbleFloat x){

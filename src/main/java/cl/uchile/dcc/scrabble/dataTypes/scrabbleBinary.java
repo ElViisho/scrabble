@@ -136,4 +136,44 @@ public class scrabbleBinary extends AbstractDataType{
     }
 
 
+
+    public scrabbleBinary sumInt(scrabbleInt n){
+        scrabbleInt x = n.sumInt(this.toScrabInt());
+        return x.toScrabBinary();
+    }
+
+    public scrabbleBinary subsInt(scrabbleInt n){
+        scrabbleInt x = n.subsInt(this.toScrabInt());
+        return x.toScrabBinary();
+    }
+
+    public scrabbleBinary multInt(scrabbleInt n){
+        scrabbleInt x = n.multInt(this.toScrabInt());
+        return x.toScrabBinary();
+    }
+
+    public scrabbleBinary divInt(scrabbleInt n){
+        scrabbleInt x = n.divInt(this.toScrabInt());
+        return x.toScrabBinary();
+    }
+
+
+
+    public scrabbleBinary sumBinary(scrabbleBinary bin){
+        return bin.sumInt(this.toScrabInt());
+    }
+
+    public scrabbleBinary subsBinary(scrabbleBinary bin){
+        return bin.subsInt(this.toScrabInt());
+    }
+
+    public scrabbleBinary multBinary(scrabbleBinary bin){
+        return bin.multInt(this.toScrabInt());
+    }
+
+    public scrabbleBinary divBinary(scrabbleBinary bin){
+        return bin.divInt(this.toScrabInt());
+    }
+
+
 }

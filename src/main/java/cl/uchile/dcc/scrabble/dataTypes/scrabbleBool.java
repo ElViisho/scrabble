@@ -41,6 +41,10 @@ public class scrabbleBool extends AbstractDataType {
         return this;
     }
 
+    public scrabbleBool negation(){
+        return new scrabbleBool(!this.value);
+    }
+
     public scrabbleBool conjBool(scrabbleBool bool){
         return new scrabbleBool(this.value && bool.value);
     }

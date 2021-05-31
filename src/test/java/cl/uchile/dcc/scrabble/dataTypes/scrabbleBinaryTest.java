@@ -22,6 +22,7 @@ class scrabbleBinaryTest {
      */
     @BeforeEach
     void setUp(){
+        binValue = "";
         seed = new Random().nextInt();
         rng = new Random(seed);
         strSize = rng.nextInt(20) + 1;
@@ -110,7 +111,7 @@ class scrabbleBinaryTest {
         assertEquals(expectedBin.toScrabBinary(), scrabBin);
     }
 
-    @Test
+    @RepeatedTest(25)
     void negationTest(){
         System.out.println(binValue);
         System.out.println(bin.twosComplement().getValue());

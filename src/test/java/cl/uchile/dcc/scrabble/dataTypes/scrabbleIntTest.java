@@ -91,6 +91,7 @@ class scrabbleIntTest {
      */
     @RepeatedTest(25)
     void toScrabIntTest(){
+        System.out.println(nValue);
         var expectedInt = new scrabbleInt(nValue);
         var scrabInt = n.toScrabInt();
         assert(scrabInt instanceof scrabbleInt);
@@ -102,7 +103,8 @@ class scrabbleIntTest {
      */
     @RepeatedTest(25)
     void toScrabBinaryTest(){
-        assert(n.toScrabBinary() == null);
+        scrabbleBinary expectedBin = new scrabbleBinary(Integer.toBinaryString(nValue));
+        assertEquals(expectedBin, n.toScrabBinary());
     }
 
 
