@@ -26,7 +26,7 @@ public class scrabbleBool extends AbstractDataType {
     /**
      * @param value The new value that the instance will have
      */
-    public void setValue(boolean value) {
+    protected void setValue(boolean value) {
         this.value = value;
     }
 

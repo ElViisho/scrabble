@@ -26,7 +26,7 @@ public class scrabbleFloat extends AbstractDataType{
     /**
      * @param value The new value that the instance will have
      */
-    public void setValue(double value) {
+    protected void setValue(double value) {
         this.value = value;
     }
 

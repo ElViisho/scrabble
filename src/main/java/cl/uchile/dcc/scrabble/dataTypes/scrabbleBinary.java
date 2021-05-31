@@ -26,7 +26,7 @@ public class scrabbleBinary extends AbstractDataType{
     /**
      * @param value The new value that the instance will have
      */
-    public void setValue(String value) {
+    protected void setValue(String value) {
         this.value = value;
     }
 
@@ -74,13 +74,66 @@ public class scrabbleBinary extends AbstractDataType{
         return bit == '0' ? 0 : 1;
     }
 
+    public scrabbleBinary twosComplement(){
+        scrabbleBinary negated = this.negation();
+        int length = negated.getValue().length();
+        char newArr[] = new char[length];
+        int summed = 0;
+        for (int i=length-1; i>=0; i--){
+            char n = negated.getValue().charAt(i);
+            if (summed == 0) {
+                if (n == '1') newArr[i] = '0';
+                else {
+                    newArr[i] = '1';
+                    summed = 1;
+                }
+            }
+            else {
+                newArr[i] = n;
+            }
+        }
+        return new scrabbleBinary(String.valueOf(newArr));
+    }
+
     @Override
     public scrabbleBinary toScrabBinary() {
         return this;
     }
 
+    public scrabbleBinary negation(){
+        int length = this.value.length();
+        char newArr[] = new char[length];
+        for (int i=0; i<length; i++) {
+            char n = this.value.charAt(i);
+            if (n == '1') newArr[i] = '0';
+            else newArr[i] = '1';
+        }
+        return new scrabbleBinary(String.valueOf(newArr));
+    }
 
+    public scrabbleBinary conjBool(scrabbleBool bool){
+        if (bool.getValue()) {
+            return new scrabbleBinary(this.value);
+        }
+        int length = this.value.length();
+        char newArr[] = new char[length];
+        for (int i=0; i<length; i++) {
+            newArr[i] = '0';
+        }
+        return new scrabbleBinary(String.valueOf(newArr));
+    }
 
+    public scrabbleBinary disjBool(scrabbleBool bool){
+        if (!bool.getValue()) {
+            return new scrabbleBinary(this.value);
+        }
+        int length = this.value.length();
+        char newArr[] = new char[length];
+        for (int i=0; i<length; i++) {
+            newArr[i] = '1';
+        }
+        return new scrabbleBinary(String.valueOf(newArr));
+    }
 
 
 }

@@ -26,7 +26,7 @@ public class scrabbleInt extends AbstractDataType{
     /**
      * @param value The new value that the instance will have
      */
-    public void setValue(int value) {
+    protected void setValue(int value) {
         this.value = value;
     }
 
@@ -46,6 +46,17 @@ public class scrabbleInt extends AbstractDataType{
         return this;
     }
 
+    @Override
+    public scrabbleBinary toScrabBinary(){
+        int sumInt = value;
+        String sumStr = "";
+        while (sumInt > 0){
+            int resto = sumInt % 2;
+            sumStr = resto + sumStr;
+            sumInt = sumInt/2;
+        }
+        return new scrabbleBinary(sumStr);
+    }
 
     public scrabbleFloat sumFloat(scrabbleFloat x){
         return new scrabbleFloat(this.value + x.getValue());

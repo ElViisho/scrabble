@@ -26,7 +26,7 @@ public class scrabbleString extends AbstractDataType {
     /**
      * @param value The new value that the instance will have
      */
-    public void setValue(String value) {
+    protected void setValue(String value) {
         this.value = value;
     }
 

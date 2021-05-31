@@ -2,6 +2,7 @@ package cl.uchile.dcc.scrabble.dataTypes;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
@@ -25,7 +26,7 @@ class scrabbleBinaryTest {
         rng = new Random(seed);
         strSize = rng.nextInt(20) + 1;
         for (int i=0; i<strSize; i++){
-            int n = rng.nextInt(1);
+            int n = rng.nextInt(2);
             binValue += Integer.toString(n);
         }
         bin = new scrabbleBinary(binValue);
@@ -43,7 +44,7 @@ class scrabbleBinaryTest {
         String newBin = "";
         do {
             for (int i=0; i<strSize; i++){
-                int n = rng.nextInt(1);
+                int n = rng.nextInt(2);
                 newBin += Integer.toString(n);
             }
         } while (newBin.equals(binValue));
@@ -107,6 +108,12 @@ class scrabbleBinaryTest {
         var scrabBin = bin.toScrabBinary();
         assert(scrabBin instanceof scrabbleBinary);
         assertEquals(expectedBin.toScrabBinary(), scrabBin);
+    }
+
+    @Test
+    void negationTest(){
+        System.out.println(binValue);
+        System.out.println(bin.twosComplement().getValue());
     }
 
 }
