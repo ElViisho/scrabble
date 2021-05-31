@@ -2,11 +2,11 @@ package cl.uchile.dcc.scrabble.dataTypes;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class scrabbleBoolTest {
     private scrabbleBool bool;
@@ -101,4 +101,54 @@ class scrabbleBoolTest {
         assert(bool.toScrabBinary() == null);
     }
 
+    /**
+     * Test for checking the conjunction between booleans
+     */
+    @Test
+    void conjBoolTest(){
+        scrabbleBool T = new scrabbleBool(true);
+        scrabbleBool F = new scrabbleBool(false);
+
+        assertTrue(T.conjBool(new scrabbleBool(true)).getValue());
+        assertFalse(F.conjBool(new scrabbleBool(true)).getValue());
+        assertFalse(T.conjBool(new scrabbleBool(false)).getValue());
+        assertFalse(F.conjBool(new scrabbleBool(false)).getValue());
+    }
+
+    /**
+     * Test for checking the disjunction between booleans
+     */
+    @Test
+    void disjBoolTest(){
+        scrabbleBool T = new scrabbleBool(true);
+        scrabbleBool F = new scrabbleBool(false);
+
+        assertTrue(T.disjBool(new scrabbleBool(true)).getValue());
+        assertTrue(F.disjBool(new scrabbleBool(true)).getValue());
+        assertTrue(T.disjBool(new scrabbleBool(false)).getValue());
+        assertFalse(F.disjBool(new scrabbleBool(false)).getValue());
+    }
+
+    @Test
+    void conjBinTest(){
+        scrabbleBool T = new scrabbleBool(true);
+        scrabbleBool F = new scrabbleBool(false);
+
+        scrabbleBinary bin = new scrabbleBinary("1001011");
+        scrabbleBinary expected1 = new scrabbleBinary("1001011");
+        scrabbleBinary expected2 = new scrabbleBinary("0000000");
+        assertEquals(expected1, T.conjBinary(bin));
+        assertEquals(expected2, F.conjBinary(bin));
+    }
+
+    @Test
+    void disjBinTest(){
+        scrabbleBool T = new scrabbleBool(true);
+        scrabbleBool F = new scrabbleBool(false);
+
+        scrabbleBinary bin = new scrabbleBinary("1001011");
+        scrabbleBinary expected = new scrabbleBinary("1001011");
+        assertEquals(expected, T.disjBinary(bin));
+        assertEquals(expected, F.disjBinary(bin));
+    }
 }

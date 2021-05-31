@@ -15,6 +15,21 @@ public class scrabbleStringTest {
     private int seed;
     private Random rng;
 
+    private String newStr;
+    private scrabbleString newString;
+
+    private boolean newBool;
+    private scrabbleBool newBoolean;
+
+    private double newX;
+    private scrabbleFloat newFloat;
+
+    private int newN;
+    private scrabbleInt newInt;
+
+    private String newBin;
+    private scrabbleBinary newBinary;
+
     /**
      * The set up to be done before each test.
      * The values are generated at random so that the tests are not biased
@@ -26,6 +41,22 @@ public class scrabbleStringTest {
         int strSize = rng.nextInt(20);
         str = RandomStringUtils.random(strSize, 0, Character.MAX_CODE_POINT, true, false, null, rng);
         string = new scrabbleString(str);
+
+        //Sum
+        newStr = RandomStringUtils.random(rng.nextInt(20), 0, Character.MAX_CODE_POINT, true, false, null, rng);
+        newString = new scrabbleString(newStr);
+
+        newBool = rng.nextBoolean();
+        newBoolean = new scrabbleBool(newBool);
+
+        newX = rng.nextDouble();
+        newFloat = new scrabbleFloat(newX);
+
+        newN = rng.nextInt();
+        newInt = new scrabbleInt(newN);
+
+        newBin = RandomStringUtils.random(rng.nextInt(20), 0, Character.MAX_CODE_POINT, true, false, null, rng);
+        newBinary = new scrabbleBinary(newBin);
     }
 
     /**
@@ -97,5 +128,32 @@ public class scrabbleStringTest {
     @RepeatedTest(25)
     void toScrabBinaryTest(){
         assert(string.toScrabBinary() == null);
+    }
+
+
+    /**
+     * Test for checking all the sums with the other types
+     */
+    @RepeatedTest(25)
+    void sumTest() {
+        var sumString = string.sumString(newString);
+        scrabbleString expectedStr = new scrabbleString(string.toString() + newStr);
+        assertEquals(expectedStr, sumString);
+
+        var sumBool = string.sumBool(newBoolean);
+        scrabbleString expectedBool = new scrabbleString(string.toString() + newBoolean.toString());
+        assertEquals(expectedBool, sumBool);
+
+        var sumFloat = string.sumFloat(newFloat);
+        scrabbleString expectedFloat = new scrabbleString(string.toString() + newFloat.toString());
+        assertEquals(expectedFloat, sumFloat);
+
+        var sumInt = string.sumInt(newInt);
+        scrabbleString expectedInt = new scrabbleString(string.toString() + newInt.toString());
+        assertEquals(expectedInt, sumInt);
+
+        var sumBin = string.sumBinary(newBinary);
+        scrabbleString expectedBin = new scrabbleString(string.toString() + newBinary.toString());
+        assertEquals(expectedBin, sumBin);
     }
 }

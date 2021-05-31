@@ -5,7 +5,7 @@ package cl.uchile.dcc.scrabble.dataTypes;
  * that has the value of the instance, composed of only 0s and 1s
  */
 public class scrabbleBinary extends AbstractDataType{
-    private final String value;
+    private String value;
 
     /**
      * The constructor of the class
@@ -14,6 +14,20 @@ public class scrabbleBinary extends AbstractDataType{
     public scrabbleBinary(String str) {
         this.value = str;
         super.value = this.value;
+    }
+
+    /**
+     * @return the value of the instance
+     */
+    public String getValue() {
+        return value;
+    }
+
+    /**
+     * @param value The new value that the instance will have
+     */
+    public void setValue(String value) {
+        this.value = value;
     }
 
     @Override
