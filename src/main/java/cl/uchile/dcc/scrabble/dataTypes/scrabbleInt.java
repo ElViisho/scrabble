@@ -6,7 +6,7 @@ import static java.lang.Math.abs;
  * The Scrabble Int class. It encapsulates a native Java int
  * that has the value of the instance
  */
-public class scrabbleInt extends AbstractDataType{
+public class scrabbleInt extends AbstractNumber {
     private int value;
 
     /**
@@ -65,58 +65,53 @@ public class scrabbleInt extends AbstractDataType{
             }
             binValue = new scrabbleBinary(strValue);
         }
+        else{
+            strValue = '0' + binValue.getValue();
+            binValue = new scrabbleBinary(strValue);
+        }
         return binValue;
     }
 
-    public scrabbleFloat sumFloat(scrabbleFloat x){
-        return new scrabbleFloat(this.value + x.getValue());
+
+    @Override
+    public SNumber sum(SNumber n) {
+        return n.sumByInt(this);
     }
 
-    public scrabbleFloat subsFloat(scrabbleFloat x){
-        return new scrabbleFloat(this.value - x.getValue());
+    @Override
+    public SNumber subs(SNumber n) {
+        return n.subsByInt(this);
     }
 
-    public scrabbleFloat multFloat(scrabbleFloat x){
-        return new scrabbleFloat(this.value * x.getValue());
+    @Override
+    public SNumber mult(SNumber n) {
+        return n.multByInt(this);
     }
 
-    public scrabbleFloat divFloat(scrabbleFloat x){
-        return new scrabbleFloat(this.value / x.getValue());
+    @Override
+    public SNumber div(SNumber n) {
+        return n.divByInt(this);
+    }
+
+    @Override
+    public SNumber sumByInt(scrabbleInt n){
+        return new scrabbleInt(n.getValue() + this.value);
+    }
+
+    @Override
+    public SNumber subsByInt(scrabbleInt n){
+        return new scrabbleInt(n.getValue() - this.value);
+    }
+
+    @Override
+    public SNumber multByInt(scrabbleInt n){
+        return new scrabbleInt(n.getValue() * this.value);
+    }
+
+    @Override
+    public SNumber divByInt(scrabbleInt n){
+        return new scrabbleInt(n.getValue() / this.value);
     }
 
 
-
-    public scrabbleInt sumInt(scrabbleInt n){
-        return new scrabbleInt(this.value + n.getValue());
-    }
-
-    public scrabbleInt subsInt(scrabbleInt n){
-        return new scrabbleInt(this.value - n.getValue());
-    }
-
-    public scrabbleInt multInt(scrabbleInt n){
-        return new scrabbleInt(this.value * n.getValue());
-    }
-
-    public scrabbleInt divInt(scrabbleInt n){
-        return new scrabbleInt(this.value / n.getValue());
-    }
-
-
-
-    public scrabbleInt sumBinary(scrabbleBinary bin){
-        return new scrabbleInt(this.value + bin.toScrabInt().getValue());
-    }
-
-    public scrabbleInt subsBinary(scrabbleBinary bin){
-        return new scrabbleInt(this.value - bin.toScrabInt().getValue());
-    }
-
-    public scrabbleInt multBinary(scrabbleBinary bin){
-        return new scrabbleInt(this.value * bin.toScrabInt().getValue());
-    }
-
-    public scrabbleInt divBinary(scrabbleBinary bin){
-        return new scrabbleInt(this.value / bin.toScrabInt().getValue());
-    }
 }

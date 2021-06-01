@@ -2,6 +2,7 @@ package cl.uchile.dcc.scrabble.dataTypes;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
@@ -141,6 +142,15 @@ class scrabbleBinaryTest {
         scrabbleBool F = new scrabbleBool(false);
         assertEquals(bin, bin.disjBool(F));
         assertEquals(new scrabbleBinary(bin.getValue().replace('0','1')), bin.disjBool(T));
+    }
+
+    @Test
+    void sumTest(){
+        scrabbleBinary x = new scrabbleBinary("01000");
+        var a = x.div(new scrabbleInt(2));
+        System.out.println(a);
+        var c = x.div(new scrabbleBinary("1001"));
+        System.out.println(c);
     }
 
 }

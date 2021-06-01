@@ -4,7 +4,7 @@ package cl.uchile.dcc.scrabble.dataTypes;
  * The Scrabble Float class. It encapsulates a native Java double
  * that has the value of the instance
  */
-public class scrabbleFloat extends AbstractDataType{
+public class scrabbleFloat extends AbstractNumber {
     private double value;
 
     /**
@@ -42,54 +42,42 @@ public class scrabbleFloat extends AbstractDataType{
     }
 
 
-    public scrabbleFloat sumFloat(scrabbleFloat x){
-        return new scrabbleFloat(this.value + x.getValue());
+    @Override
+    public SNumber sum(SNumber n) {
+        return n.sumByFloat(this);
     }
 
-    public scrabbleFloat subsFloat(scrabbleFloat x){
-        return new scrabbleFloat(this.value - x.getValue());
+    @Override
+    public SNumber subs(SNumber n) {
+        return n.subsByFloat(this);
     }
 
-    public scrabbleFloat multFloat(scrabbleFloat x){
-        return new scrabbleFloat(this.value * x.getValue());
+    @Override
+    public SNumber mult(SNumber n) {
+        return n.multByFloat(this);
     }
 
-    public scrabbleFloat divFloat(scrabbleFloat x){
-        return new scrabbleFloat(this.value / x.getValue());
-    }
-
-
-
-    public scrabbleFloat sumInt(scrabbleInt n){
-        return new scrabbleFloat(this.value + n.getValue());
-    }
-
-    public scrabbleFloat subsInt(scrabbleInt n){
-        return new scrabbleFloat(this.value - n.getValue());
-    }
-
-    public scrabbleFloat multInt(scrabbleInt n){
-        return new scrabbleFloat(this.value * n.getValue());
-    }
-
-    public scrabbleFloat divInt(scrabbleInt n){
-        return new scrabbleFloat(this.value / n.getValue());
+    @Override
+    public SNumber div(SNumber n) {
+        return n.divByFloat(this);
     }
 
 
-    public scrabbleFloat sumBinary(scrabbleBinary bin){
-        return new scrabbleFloat(this.value + bin.toScrabFloat().getValue());
+    public scrabbleFloat sumByInt(scrabbleInt n){
+        return new scrabbleFloat(n.getValue() + this.value);
     }
 
-    public scrabbleFloat subsBinary(scrabbleBinary bin){
-        return new scrabbleFloat(this.value - bin.toScrabFloat().getValue());
+    public scrabbleFloat subsByInt(scrabbleInt n){
+        return new scrabbleFloat(n.getValue() - this.value);
     }
 
-    public scrabbleFloat multBinary(scrabbleBinary bin){
-        return new scrabbleFloat(this.value * bin.toScrabFloat().getValue());
+    public scrabbleFloat multByInt(scrabbleInt n){
+        return new scrabbleFloat(n.getValue() * this.value);
     }
 
-    public scrabbleFloat divBinary(scrabbleBinary bin){
-        return new scrabbleFloat(this.value / bin.toScrabFloat().getValue());
+    public scrabbleFloat divByInt(scrabbleInt n){
+        return new scrabbleFloat(n.getValue() / this.value);
     }
+
+
 }

@@ -4,7 +4,7 @@ package cl.uchile.dcc.scrabble.dataTypes;
  * The Scrabble Binary class. It encapsulates a native Java String
  * that has the value of the instance, composed of only 0s and 1s
  */
-public class scrabbleBinary extends AbstractDataType{
+public class scrabbleBinary extends AbstractNumber{
     private String value;
 
     /**
@@ -136,44 +136,44 @@ public class scrabbleBinary extends AbstractDataType{
     }
 
 
-
-    public scrabbleBinary sumInt(scrabbleInt n){
-        scrabbleInt x = n.sumInt(this.toScrabInt());
-        return x.toScrabBinary();
+    @Override
+    public SNumber sum(SNumber n) {
+        return n.sumByBinary(this);
     }
 
-    public scrabbleBinary subsInt(scrabbleInt n){
-        scrabbleInt x = n.subsInt(this.toScrabInt());
-        return x.toScrabBinary();
+    @Override
+    public SNumber subs(SNumber n) {
+        return n.subsByBinary(this);
     }
 
-    public scrabbleBinary multInt(scrabbleInt n){
-        scrabbleInt x = n.multInt(this.toScrabInt());
-        return x.toScrabBinary();
+    @Override
+    public SNumber mult(SNumber n) {
+        return n.multByBinary(this);
     }
 
-    public scrabbleBinary divInt(scrabbleInt n){
-        scrabbleInt x = n.divInt(this.toScrabInt());
-        return x.toScrabBinary();
+    @Override
+    public SNumber div(SNumber n) {
+        return n.divByBinary(this);
     }
 
-
-
-    public scrabbleBinary sumBinary(scrabbleBinary bin){
-        return bin.sumInt(this.toScrabInt());
+    @Override
+    public scrabbleInt sumByInt(scrabbleInt n) {
+        return new scrabbleInt(n.getValue() + this.toScrabInt().getValue());
     }
 
-    public scrabbleBinary subsBinary(scrabbleBinary bin){
-        return bin.subsInt(this.toScrabInt());
+    @Override
+    public scrabbleInt subsByInt(scrabbleInt n) {
+        return new scrabbleInt(n.getValue() - this.toScrabInt().getValue());
     }
 
-    public scrabbleBinary multBinary(scrabbleBinary bin){
-        return bin.multInt(this.toScrabInt());
+    @Override
+    public scrabbleInt multByInt(scrabbleInt n) {
+        return new scrabbleInt(n.getValue() * this.toScrabInt().getValue());
     }
 
-    public scrabbleBinary divBinary(scrabbleBinary bin){
-        return bin.divInt(this.toScrabInt());
+    @Override
+    public scrabbleInt divByInt(scrabbleInt n) {
+        return new scrabbleInt(n.getValue() / this.toScrabInt().getValue());
     }
-
 
 }
