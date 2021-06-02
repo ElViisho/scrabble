@@ -32,22 +32,38 @@ public class scrabbleInt extends AbstractNumber {
         this.value = value;
     }
 
+    /**
+     * {@inheritDoc}
+     * @return the transformed instance
+     */
     @Override
     public scrabbleString toScrabString() {
         String s = String.valueOf(value);
         return new scrabbleString(s);
     }
 
+    /**
+     * {@inheritDoc}
+     * @return the transformed instance
+     */
     @Override
     public scrabbleFloat toScrabFloat() {
         return new scrabbleFloat(value);
     }
 
+    /**
+     * {@inheritDoc}
+     * @return the transformed instance
+     */
     @Override
     public scrabbleInt toScrabInt() {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     * @return the transformed instance
+     */
     @Override
     public scrabbleBinary toScrabBinary(){
         int intValue = abs(value);
@@ -72,42 +88,81 @@ public class scrabbleInt extends AbstractNumber {
         return binValue;
     }
 
-
+    /**
+     * {@inheritDoc}
+     * @param n the number to be summed
+     * @return the result
+     */
     @Override
     public SNumber sum(SNumber n) {
         return n.sumByInt(this);
     }
 
+    /**
+     * {@inheritDoc}
+     * @param n the number to be subtracted
+     * @return the result
+     */
     @Override
     public SNumber subs(SNumber n) {
         return n.subsByInt(this);
     }
 
+    /**
+     * {@inheritDoc}
+     * @param n the number to be multiplied
+     * @return the result
+     */
     @Override
     public SNumber mult(SNumber n) {
         return n.multByInt(this);
     }
 
+    /**
+     * {@inheritDoc}
+     * @param n the number to be divided
+     * @return the result
+     */
     @Override
     public SNumber div(SNumber n) {
         return n.divByInt(this);
     }
 
+    /**
+     * {@inheritDoc}
+     * @param n the number that's summing this
+     * @return the result
+     */
     @Override
     public SNumber sumByInt(scrabbleInt n){
         return new scrabbleInt(n.getValue() + this.value);
     }
 
+    /**
+     * {@inheritDoc}
+     * @param n the number that's subtracting this
+     * @return the result
+     */
     @Override
     public SNumber subsByInt(scrabbleInt n){
         return new scrabbleInt(n.getValue() - this.value);
     }
 
+    /**
+     * {@inheritDoc}
+     * @param n the number that's multiplying this
+     * @return the result
+     */
     @Override
     public SNumber multByInt(scrabbleInt n){
         return new scrabbleInt(n.getValue() * this.value);
     }
 
+    /**
+     * {@inheritDoc}
+     * @param n the number that's dividing this
+     * @return the result
+     */
     @Override
     public SNumber divByInt(scrabbleInt n){
         return new scrabbleInt(n.getValue() / this.value);

@@ -13,6 +13,7 @@ class scrabbleBoolTest {
     private boolean boolValue;
     private int seed;
     private Random rng;
+    private final int N = 25;
 
     /**
      * The set up to be done before each test.
@@ -105,51 +106,38 @@ class scrabbleBoolTest {
      * Test for checking the conjunction between booleans
      */
     @Test
-    void conjBoolTest(){
+    void conjTest(){
         scrabbleBool T = new scrabbleBool(true);
         scrabbleBool F = new scrabbleBool(false);
 
-        assertTrue(T.conjBool(new scrabbleBool(true)).getValue());
-        assertFalse(F.conjBool(new scrabbleBool(true)).getValue());
-        assertFalse(T.conjBool(new scrabbleBool(false)).getValue());
-        assertFalse(F.conjBool(new scrabbleBool(false)).getValue());
+        assertTrue(T.conj(new scrabbleBool(true)).toScrabBool().getValue());
+        assertFalse(F.conj(new scrabbleBool(true)).toScrabBool().getValue());
+        assertFalse(T.conj(new scrabbleBool(false)).toScrabBool().getValue());
+        assertFalse(F.conj(new scrabbleBool(false)).toScrabBool().getValue());
+
+        scrabbleBinary bin = new scrabbleBinary("10001001");
+        scrabbleBinary expected = new scrabbleBinary("00000000");
+        assertEquals(bin, bin.conj(T));
+        assertEquals(expected, bin.conj(F));
     }
 
     /**
      * Test for checking the disjunction between booleans
      */
     @Test
-    void disjBoolTest(){
+    void disjTest(){
         scrabbleBool T = new scrabbleBool(true);
         scrabbleBool F = new scrabbleBool(false);
 
-        assertTrue(T.disjBool(new scrabbleBool(true)).getValue());
-        assertTrue(F.disjBool(new scrabbleBool(true)).getValue());
-        assertTrue(T.disjBool(new scrabbleBool(false)).getValue());
-        assertFalse(F.disjBool(new scrabbleBool(false)).getValue());
+        assertTrue(T.disj(new scrabbleBool(true)).toScrabBool().getValue());
+        assertTrue(F.disj(new scrabbleBool(true)).toScrabBool().getValue());
+        assertTrue(T.disj(new scrabbleBool(false)).toScrabBool().getValue());
+        assertFalse(F.disj(new scrabbleBool(false)).toScrabBool().getValue());
+
+        scrabbleBinary bin = new scrabbleBinary("10001001");
+        scrabbleBinary expected = new scrabbleBinary("11111111");
+        assertEquals(bin, bin.disj(F));
+        assertEquals(expected, bin.disj(T));
     }
 
-    @Test
-    void conjBinTest(){
-        scrabbleBool T = new scrabbleBool(true);
-        scrabbleBool F = new scrabbleBool(false);
-
-        scrabbleBinary bin = new scrabbleBinary("1001011");
-        scrabbleBinary expected1 = new scrabbleBinary("1001011");
-        scrabbleBinary expected2 = new scrabbleBinary("0000000");
-        assertEquals(expected1, T.conjBinary(bin));
-        assertEquals(expected2, F.conjBinary(bin));
-    }
-
-    @Test
-    void disjBinTest(){
-        scrabbleBool T = new scrabbleBool(true);
-        scrabbleBool F = new scrabbleBool(false);
-
-        scrabbleBinary bin = new scrabbleBinary("1001011");
-        scrabbleBinary expected1 = new scrabbleBinary("1001011");
-        scrabbleBinary expected2 = new scrabbleBinary("1111111");
-        assertEquals(expected2, T.disjBinary(bin));
-        assertEquals(expected1, F.disjBinary(bin));
-    }
 }

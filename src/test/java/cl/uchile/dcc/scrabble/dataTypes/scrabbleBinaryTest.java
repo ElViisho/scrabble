@@ -43,15 +43,6 @@ class scrabbleBinaryTest {
         var expectedBin = new scrabbleBinary(binValue);
         assertEquals(expectedBin, bin);
         assertEquals(expectedBin.hashCode(), bin.hashCode());
-        String newBin = "";
-        do {
-            for (int i=0; i<strSize; i++){
-                int n = rng.nextInt(2);
-                newBin += Integer.toString(n);
-            }
-        } while (newBin.equals(binValue));
-        var differentBin = new scrabbleBinary(newBin);
-        assertNotEquals(differentBin, bin);
     }
 
 
@@ -129,28 +120,62 @@ class scrabbleBinaryTest {
     }
 
     @RepeatedTest(N)
-    void conjBoolTest(){
+    void conjTest(){
         scrabbleBool T = new scrabbleBool(true);
         scrabbleBool F = new scrabbleBool(false);
-        assertEquals(bin, bin.conjBool(T));
-        assertEquals(new scrabbleBinary(bin.getValue().replace('1','0')), bin.conjBool(F));
+        assertEquals(bin, bin.conj(T));
+        assertEquals(new scrabbleBinary(bin.getValue().replace('1','0')), bin.conj(F));
+
+        String value = "";
+        for (int i=0; i<strSize; i++){
+            int n = rng.nextInt(2);
+            value += Integer.toString(n);
+        }
+
+        scrabbleBinary newBin = new scrabbleBinary(value);
+        int x = newBin.toScrabInt().getValue();
+        int y = bin.toScrabInt().getValue();
+        scrabbleInt z = new scrabbleInt(x & y);
+        assertEquals(z.toScrabBinary(), bin.conj(newBin));
+    }
+
+
+    @RepeatedTest(N)
+    void disjTest(){
+        scrabbleBool T = new scrabbleBool(true);
+        scrabbleBool F = new scrabbleBool(false);
+        assertEquals(bin, bin.disj(F));
+        assertEquals(new scrabbleBinary(bin.getValue().replace('0','1')), bin.disj(T));
+
+        String value = "";
+        for (int i=0; i<strSize; i++){
+            int n = rng.nextInt(2);
+            value += Integer.toString(n);
+        }
+
+        scrabbleBinary newBin = new scrabbleBinary(value);
+        int x = newBin.toScrabInt().getValue();
+        int y = bin.toScrabInt().getValue();
+        scrabbleInt z = new scrabbleInt(x | y);
+        assertEquals(z.toScrabBinary(), bin.disj(newBin));
     }
 
     @RepeatedTest(N)
-    void disjBoolTest(){
-        scrabbleBool T = new scrabbleBool(true);
-        scrabbleBool F = new scrabbleBool(false);
-        assertEquals(bin, bin.disjBool(F));
-        assertEquals(new scrabbleBinary(bin.getValue().replace('0','1')), bin.disjBool(T));
+    void sumTest(){
+        int nInt = rng.nextInt();
+        String value = bin.getValue();
+        if (value.charAt(0) == '1') {
+            value = bin.twosComplement().getValue();
+            value = "-" + value;
+        }
+        var binInt = Integer.parseInt(value,2);
+
+        scrabbleInt n = new scrabbleInt(nInt);
+        scrabbleInt nSuma = new scrabbleInt(nInt + binInt);
+        assertEquals(nSuma.toScrabBinary(), bin.sum(n));
+
+
     }
 
-    @Test
-    void sumTest(){
-        scrabbleBinary x = new scrabbleBinary("01000");
-        var a = x.div(new scrabbleInt(2));
-        System.out.println(a);
-        var c = x.div(new scrabbleBinary("1001"));
-        System.out.println(c);
-    }
 
 }
