@@ -13,7 +13,7 @@ class scrabbleBoolTest {
     private boolean boolValue;
     private int seed;
     private Random rng;
-    private final int N = 25;
+    private final int N = 100;
 
     /**
      * The set up to be done before each test.
@@ -32,7 +32,7 @@ class scrabbleBoolTest {
      * are considered equal, two with different values are considered different,
      * and also checks the toString method
      */
-    @RepeatedTest(25)
+    @RepeatedTest(N)
     void boolTest() {
         var expectedBool = new scrabbleBool(boolValue);
         assertEquals(expectedBool, bool);
@@ -48,40 +48,32 @@ class scrabbleBoolTest {
     /**
      * Test for checking the toString() method
      */
-    @RepeatedTest(25)
+    @RepeatedTest(N)
     void toStringTest(){
-        var expectedBool = new scrabbleBool(boolValue);
-        var boolToString = bool.toString();
-        assert(boolToString instanceof String);
-        assertEquals(expectedBool.toString(), boolToString);
+        assertEquals(String.valueOf(boolValue), bool.toString());
     }
 
     /**
      * Test for checking the toScrabString() method
      */
-    @RepeatedTest(25)
+    @RepeatedTest(N)
     void toScrabStringTest(){
-        var expectedBool = new scrabbleBool(boolValue);
-        var scrabString = bool.toScrabString();
-        assert(scrabString instanceof scrabbleString);
-        assertEquals(expectedBool.toScrabString(), scrabString);
+        var expected = new scrabbleString(String.valueOf(boolValue));
+        assertEquals(expected, bool.toScrabString());
     }
 
     /**
      * Test for checking the toScrabBool() method
      */
-    @RepeatedTest(25)
+    @RepeatedTest(N)
     void toScrabBoolTest(){
-        var expectedBool = new scrabbleBool(boolValue);
-        var scrabBool = bool.toScrabBool();
-        assert(scrabBool instanceof scrabbleBool);
-        assertEquals(expectedBool.toScrabBool(), scrabBool);
+        assertEquals(bool, bool.toScrabBool());
     }
 
     /**
      * Test for checking the toScrabFloat() method
      */
-    @RepeatedTest(25)
+    @RepeatedTest(N)
     void toScrabFloatTest(){
         assert(bool.toScrabFloat() == null);
     }
@@ -89,7 +81,7 @@ class scrabbleBoolTest {
     /**
      * Test for checking the toScrabInt() method
      */
-    @RepeatedTest(25)
+    @RepeatedTest(N)
     void toScrabIntTest(){
         assert(bool.toScrabInt() == null);
     }
@@ -97,15 +89,21 @@ class scrabbleBoolTest {
     /**
      * Test for checking the toScrabBinary() method
      */
-    @RepeatedTest(25)
+    @RepeatedTest(N)
     void toScrabBinaryTest(){
         assert(bool.toScrabBinary() == null);
+    }
+
+    @Test
+    void negationTest(){
+        assertFalse((new scrabbleBool(true)).negation().getValue());
+        assertTrue((new scrabbleBool(false)).negation().getValue());
     }
 
     /**
      * Test for checking the conjunction between booleans
      */
-    @Test
+    @RepeatedTest(N)
     void conjTest(){
         scrabbleBool T = new scrabbleBool(true);
         scrabbleBool F = new scrabbleBool(false);
@@ -115,8 +113,19 @@ class scrabbleBoolTest {
         assertFalse(T.conj(new scrabbleBool(false)).toScrabBool().getValue());
         assertFalse(F.conj(new scrabbleBool(false)).toScrabBool().getValue());
 
-        scrabbleBinary bin = new scrabbleBinary("10001001");
-        scrabbleBinary expected = new scrabbleBinary("00000000");
+        String value = "";
+        int strSize = rng.nextInt(20) + 1;
+        for (int i=0; i<strSize; i++){
+            int n = rng.nextInt(2);
+            value += Integer.toString(n);
+        }
+        scrabbleBinary bin = new scrabbleBinary(value);
+        String otherValue = "";
+        for (int i=0; i<strSize; i++){
+            otherValue += '0';
+        }
+        scrabbleBinary expected = new scrabbleBinary(otherValue);
+
         assertEquals(bin, bin.conj(T));
         assertEquals(expected, bin.conj(F));
     }
@@ -124,7 +133,7 @@ class scrabbleBoolTest {
     /**
      * Test for checking the disjunction between booleans
      */
-    @Test
+    @RepeatedTest(N)
     void disjTest(){
         scrabbleBool T = new scrabbleBool(true);
         scrabbleBool F = new scrabbleBool(false);
@@ -134,8 +143,19 @@ class scrabbleBoolTest {
         assertTrue(T.disj(new scrabbleBool(false)).toScrabBool().getValue());
         assertFalse(F.disj(new scrabbleBool(false)).toScrabBool().getValue());
 
-        scrabbleBinary bin = new scrabbleBinary("10001001");
-        scrabbleBinary expected = new scrabbleBinary("11111111");
+        String value = "";
+        int strSize = rng.nextInt(20) + 1;
+        for (int i=0; i<strSize; i++){
+            int n = rng.nextInt(2);
+            value += Integer.toString(n);
+        }
+        scrabbleBinary bin = new scrabbleBinary(value);
+        String otherValue = "";
+        for (int i=0; i<strSize; i++){
+            otherValue += '1';
+        }
+        scrabbleBinary expected = new scrabbleBinary(otherValue);
+
         assertEquals(bin, bin.disj(F));
         assertEquals(expected, bin.disj(T));
     }
