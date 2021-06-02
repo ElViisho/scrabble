@@ -45,6 +45,14 @@ class scrabbleBoolTest {
         assertNotEquals(differentBool.toString(), bool.toString());
     }
 
+    @RepeatedTest(N)
+    void valueSetterTest(){
+        boolean newBoolValue = rng.nextBoolean();
+        scrabbleBool newBool = new scrabbleBool(false);
+        newBool.setValue(newBoolValue);
+        assertEquals(new scrabbleBool(newBoolValue), newBool);
+    }
+
     /**
      * Test for checking the toString() method
      */

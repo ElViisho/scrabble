@@ -45,6 +45,14 @@ class scrabbleIntTest {
         assertNotEquals(differentN, n);
     }
 
+    @RepeatedTest(N)
+    void valueSetterTest(){
+        int newNValue = rng.nextInt();
+        scrabbleInt newN = new scrabbleInt(0);
+        newN.setValue(newNValue);
+        assertEquals(new scrabbleInt(newNValue), newN);
+    }
+
     /**
      * Test for checking the toString() method
      */

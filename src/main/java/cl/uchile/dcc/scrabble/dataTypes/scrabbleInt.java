@@ -30,6 +30,7 @@ public class scrabbleInt extends AbstractNumber {
      */
     protected void setValue(int value) {
         this.value = value;
+        super.value = this.value;
     }
 
     /**

@@ -2,6 +2,7 @@ package cl.uchile.dcc.scrabble.dataTypes;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
@@ -42,6 +43,19 @@ class scrabbleBinaryTest {
         var expectedBin = new scrabbleBinary(binValue);
         assertEquals(expectedBin, bin);
         assertEquals(expectedBin.hashCode(), bin.hashCode());
+    }
+
+    @RepeatedTest(N)
+    void valueSetterTest(){
+        String newBinValue = "";
+        strSize = rng.nextInt(20) + 1;
+        for (int i=0; i<strSize; i++){
+            int n = rng.nextInt(2);
+            newBinValue += Integer.toString(n);
+        }
+        scrabbleBinary newBin = new scrabbleBinary("");
+        newBin.setValue(newBinValue);
+        assertEquals(new scrabbleBinary(newBinValue), newBin);
     }
 
 
@@ -143,6 +157,7 @@ class scrabbleBinaryTest {
         scrabbleInt z = new scrabbleInt(x & y);
         assertEquals(z.toScrabBinary(), bin.conj(newBin));
     }
+
 
     /**
      * Test for checking the disjunction with other booleans and binaries

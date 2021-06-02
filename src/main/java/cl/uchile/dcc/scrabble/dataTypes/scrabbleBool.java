@@ -28,6 +28,7 @@ public class scrabbleBool extends AbstractDataType implements SLogic{
      */
     protected void setValue(boolean value) {
         this.value = value;
+        super.value = this.value;
     }
 
     /**

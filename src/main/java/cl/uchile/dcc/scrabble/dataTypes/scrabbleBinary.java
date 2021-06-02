@@ -14,12 +14,6 @@ public class scrabbleBinary extends AbstractNumber implements SLogic{
      * @param str The value that will be assigned to the instance
      */
     public scrabbleBinary(String str) {
-        String s = str;
-        if (s.length() > 0 && s.charAt(0) == '1') {
-            while (s.length() < 32) {
-                s = '1' + s;
-            }
-        }
         this.value = str;
         super.value = this.value;
     }
@@ -36,6 +30,7 @@ public class scrabbleBinary extends AbstractNumber implements SLogic{
      */
     protected void setValue(String value) {
         this.value = value;
+        super.value = this.value;
     }
 
     /**
@@ -49,10 +44,10 @@ public class scrabbleBinary extends AbstractNumber implements SLogic{
             var o = (scrabbleBinary) obj;
             String s1 = o.value;
             String s2 = this.value;
-            while (s1.length() > 1 && s1.charAt(0)=='0' && s1.charAt(1)=='0'){
+            while (s1.length() > 1 && ((s1.charAt(0)=='0' && s1.charAt(1)=='0') || (s1.charAt(0)=='1' && s1.charAt(1)=='1'))){
                 s1 = s1.substring(1);
             }
-            while (s2.length() > 1 && s2.charAt(0)=='0' && s2.charAt(1)=='0'){
+            while (s2.length() > 1 && ((s2.charAt(0)=='0' && s2.charAt(1)=='0') || (s2.charAt(0)=='1' && s2.charAt(1)=='1'))){
                 s2 = s2.substring(1);
             }
             return s1.equals(s2);
@@ -208,11 +203,6 @@ public class scrabbleBinary extends AbstractNumber implements SLogic{
             arr[i] = (value1.charAt(i) == '1' && value2.charAt(i) == '1') ? '1' : '0';
         }
         String s = String.valueOf(arr);
-        if (s.charAt(0) == '1') {
-            while (s.length() < 32) {
-                s = '1' + s;
-            }
-        }
         return new scrabbleBinary(s);
     }
 
@@ -239,11 +229,6 @@ public class scrabbleBinary extends AbstractNumber implements SLogic{
             arr[i] = (value1.charAt(i) == '1' || value2.charAt(i) == '1') ? '1' : '0';
         }
         String s = String.valueOf(arr);
-        if (s.charAt(0) == '1') {
-            while (s.length() < 32) {
-                s = '1' + s;
-            }
-        }
         return new scrabbleBinary(s);
     }
 

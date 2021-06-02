@@ -28,6 +28,7 @@ public class scrabbleFloat extends AbstractNumber {
      */
     protected void setValue(double value) {
         this.value = value;
+        super.value = this.value;
     }
 
     /**

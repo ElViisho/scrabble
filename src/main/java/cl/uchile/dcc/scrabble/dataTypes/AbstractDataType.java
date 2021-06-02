@@ -93,4 +93,14 @@ public abstract class AbstractDataType implements IdataTypes{
     public scrabbleBinary toScrabBinary() {
         return null;
     }
+
+
+    /**
+     * {@inheritDoc}
+     * @param s the string that will concatenate this
+     * @return the concatenated string
+     */
+    public scrabbleString sumByString(scrabbleString s){
+        return new scrabbleString(s.getValue() + this.toString());
+    }
 }

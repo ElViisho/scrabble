@@ -28,8 +28,13 @@ public class scrabbleString extends AbstractDataType implements SString{
      */
     protected void setValue(String value) {
         this.value = value;
+        super.value = this.value;
     }
 
+    /**
+     * {@inheritDoc}
+     * @return the transformed instance
+     */
     @Override
     public scrabbleString toScrabString() {
         return this;
@@ -37,56 +42,12 @@ public class scrabbleString extends AbstractDataType implements SString{
 
     /**
      * {@inheritDoc}
-     * @param string the string to be concatenated
+     * @param i the value to be concatenated. It transforms into a string before
      * @return the concatenated string
      */
     @Override
-    public scrabbleString sumString(scrabbleString string){
-        String newStr = this.value + string.getValue();
-        return new scrabbleString(newStr);
+    public scrabbleString sum(AbstractDataType i){
+        return i.sumByString(this);
     }
 
-    /**
-     * {@inheritDoc}
-     * @param bool the value to be concatenated. It transforms into a string before
-     * @return the concatenated string
-     */
-    @Override
-    public scrabbleString sumBool(scrabbleBool bool){
-        String newStr = this.value + bool.toString();
-        return new scrabbleString(newStr);
-    }
-
-    /**
-     * {@inheritDoc}
-     * @param x the value to be concatenated. It transforms into a string before
-     * @return the concatenated string
-     */
-    @Override
-    public scrabbleString sumFloat(scrabbleFloat x){
-        String newStr = this.value + x.toString();
-        return new scrabbleString(newStr);
-    }
-
-    /**
-     * {@inheritDoc}
-     * @param n the value to be concatenated. It transforms into a string before
-     * @return the concatenated string
-     */
-    @Override
-    public scrabbleString sumInt(scrabbleInt n){
-        String newStr = this.value + n.toString();
-        return new scrabbleString(newStr);
-    }
-
-    /**
-     * {@inheritDoc}
-     * @param bin the value to be concatenated. It transforms into a string before
-     * @return the concatenated string
-     */
-    @Override
-    public scrabbleString sumBinary(scrabbleBinary bin){
-        String newStr = this.value + bin.toString();
-        return new scrabbleString(newStr);
-    }
 }

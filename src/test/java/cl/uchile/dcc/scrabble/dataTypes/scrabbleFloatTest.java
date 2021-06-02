@@ -45,6 +45,14 @@ class scrabbleFloatTest {
         assertNotEquals(differentX, x);
     }
 
+    @RepeatedTest(N)
+    void valueSetterTest(){
+        double newXValue = rng.nextDouble();
+        scrabbleFloat newX = new scrabbleFloat(0);
+        newX.setValue(newXValue);
+        assertEquals(new scrabbleFloat(newXValue), newX);
+    }
+
     /**
      * Test for checking the toString() method
      */

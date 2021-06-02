@@ -55,4 +55,12 @@ public interface IdataTypes {
      * @return the transformed instance
      */
     scrabbleBinary toScrabBinary();
+
+
+    /**
+     * For using double dispatch. This will be concatenated at the end of s
+     * @param s the string that will concatenate this
+     * @return the concatenated string
+     */
+    scrabbleString sumByString(scrabbleString s);
 }
