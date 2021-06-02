@@ -98,6 +98,9 @@ class scrabbleIntTest {
         assertEquals(expectedBin, n.toScrabBinary());
     }
 
+    /**
+     * Test for checking the sums with other ints, floats and binaries
+     */
     @RepeatedTest(N)
     void sumTest(){
         int nInt = rng.nextInt();
@@ -125,6 +128,9 @@ class scrabbleIntTest {
         assertEquals(new scrabbleInt(nValue + expected), n.sum(bin));
     }
 
+    /**
+     * Test for checking the subtraction with other ints, floats and binaries
+     */
     @RepeatedTest(N)
     void subsTest(){
         int nInt = rng.nextInt();
@@ -152,6 +158,9 @@ class scrabbleIntTest {
         assertEquals(new scrabbleInt(nValue - expected), n.subs(bin));
     }
 
+    /**
+     * Test for checking the multiplication with other ints, floats and binaries
+     */
     @RepeatedTest(N)
     void multTest(){
         int nInt = rng.nextInt();
@@ -179,6 +188,9 @@ class scrabbleIntTest {
         assertEquals(new scrabbleInt(nValue * expected), n.mult(bin));
     }
 
+    /**
+     * Test for checking the division with other ints, floats and binaries
+     */
     @RepeatedTest(N)
     void divTest(){
         int nInt;
