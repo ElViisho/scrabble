@@ -2,7 +2,6 @@ package cl.uchile.dcc.scrabble.dataTypes;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
@@ -15,7 +14,7 @@ class scrabbleBinaryTest {
     private int seed;
     private Random rng;
     private int strSize;
-    private final int N = 25;
+    private final int N = 100;
 
     /**
      * The set up to be done before each test.
@@ -112,6 +111,9 @@ class scrabbleBinaryTest {
         assertEquals(expectedBin.toScrabBinary(), scrabBin);
     }
 
+    /**
+     * Test for checking the negation method
+     */
     @RepeatedTest(N)
     void negationTest(){
         String noBin = bin.getValue();
@@ -119,6 +121,9 @@ class scrabbleBinaryTest {
         assertEquals(new scrabbleBinary(noBin), bin.negation());
     }
 
+    /**
+     * Test for checking the conjunction with other booleans and binaries
+     */
     @RepeatedTest(N)
     void conjTest(){
         scrabbleBool T = new scrabbleBool(true);
@@ -139,7 +144,9 @@ class scrabbleBinaryTest {
         assertEquals(z.toScrabBinary(), bin.conj(newBin));
     }
 
-
+    /**
+     * Test for checking the disjunction with other booleans and binaries
+     */
     @RepeatedTest(N)
     void disjTest(){
         scrabbleBool T = new scrabbleBool(true);
@@ -160,6 +167,9 @@ class scrabbleBinaryTest {
         assertEquals(z.toScrabBinary(), bin.disj(newBin));
     }
 
+    /**
+     * Test for checking the sums with other ints and binaries
+     */
     @RepeatedTest(N)
     void sumTest(){
         int nInt = rng.nextInt();
@@ -171,11 +181,132 @@ class scrabbleBinaryTest {
         var binInt = Integer.parseInt(value,2);
 
         scrabbleInt n = new scrabbleInt(nInt);
-        scrabbleInt nSuma = new scrabbleInt(nInt + binInt);
+        scrabbleInt nSuma = new scrabbleInt(binInt + nInt);
         assertEquals(nSuma.toScrabBinary(), bin.sum(n));
 
+        String newvalue = "";
+        int strSize = rng.nextInt(20) + 1;
+        for (int i=0; i<strSize; i++){
+            int x = rng.nextInt(2);
+            newvalue += Integer.toString(x);
+        }
+        scrabbleBinary newbin = new scrabbleBinary(newvalue);
 
+        if (newvalue.charAt(0) == '1') {
+            newvalue = newbin.twosComplement().getValue();
+            newvalue = "-" + newvalue;
+        }
+        var newint = Integer.parseInt(newvalue,2);
+        scrabbleInt nSuma2 = new scrabbleInt(binInt + newint);
+        assertEquals(nSuma2.toScrabBinary(), bin.sum(newbin));
     }
 
+    /**
+     * Test for checking the subtraction with other ints and binaries
+     */
+    @RepeatedTest(N)
+    void subsTest(){
+        int nInt = rng.nextInt();
+        String value = bin.getValue();
+        if (value.charAt(0) == '1') {
+            value = bin.twosComplement().getValue();
+            value = "-" + value;
+        }
+        var binInt = Integer.parseInt(value,2);
+
+        scrabbleInt n = new scrabbleInt(nInt);
+        scrabbleInt nSuma = new scrabbleInt(binInt - nInt);
+        assertEquals(nSuma.toScrabBinary(), bin.subs(n));
+
+        String newvalue = "";
+        int strSize = rng.nextInt(20) + 1;
+        for (int i=0; i<strSize; i++){
+            int x = rng.nextInt(2);
+            newvalue += Integer.toString(x);
+        }
+        scrabbleBinary newbin = new scrabbleBinary(newvalue);
+
+        if (newvalue.charAt(0) == '1') {
+            newvalue = newbin.twosComplement().getValue();
+            newvalue = "-" + newvalue;
+        }
+        var newint = Integer.parseInt(newvalue,2);
+        scrabbleInt nSuma2 = new scrabbleInt(binInt - newint);
+        assertEquals(nSuma2.toScrabBinary(), bin.subs(newbin));
+    }
+
+    /**
+     * Test for checking the multiplication with other ints and binaries
+     */
+    @RepeatedTest(N)
+    void multTest(){
+        int nInt = rng.nextInt();
+        String value = bin.getValue();
+        if (value.charAt(0) == '1') {
+            value = bin.twosComplement().getValue();
+            value = "-" + value;
+        }
+        var binInt = Integer.parseInt(value,2);
+
+        scrabbleInt n = new scrabbleInt(nInt);
+        scrabbleInt nSuma = new scrabbleInt(binInt * nInt);
+        assertEquals(nSuma.toScrabBinary(), bin.mult(n));
+
+        String newvalue = "";
+        int strSize = rng.nextInt(20) + 1;
+        for (int i=0; i<strSize; i++){
+            int x = rng.nextInt(2);
+            newvalue += Integer.toString(x);
+        }
+        scrabbleBinary newbin = new scrabbleBinary(newvalue);
+
+        if (newvalue.charAt(0) == '1') {
+            newvalue = newbin.twosComplement().getValue();
+            newvalue = "-" + newvalue;
+        }
+        var newint = Integer.parseInt(newvalue,2);
+        scrabbleInt nSuma2 = new scrabbleInt(binInt * newint);
+        assertEquals(nSuma2.toScrabBinary(), bin.mult(newbin));
+    }
+
+    /**
+     * Test for checking the division with other ints and binaries
+     */
+    @RepeatedTest(N)
+    void divTest(){
+        int nInt;
+        do {
+            nInt = rng.nextInt();
+        } while (nInt == 0);
+        String value = bin.getValue();
+        if (value.charAt(0) == '1') {
+            value = bin.twosComplement().getValue();
+            value = "-" + value;
+        }
+        var binInt = Integer.parseInt(value,2);
+
+        scrabbleInt n = new scrabbleInt(nInt);
+        scrabbleInt nSuma = new scrabbleInt(binInt / nInt);
+        assertEquals(nSuma.toScrabBinary(), bin.div(n));
+
+        String newvalue = "";
+        do {
+            int strSize = rng.nextInt(20) + 1;
+            for (int i=0; i<strSize; i++){
+                int x = rng.nextInt(2);
+                newvalue += Integer.toString(x);
+            }
+        } while (Integer.parseInt(newvalue,2) == 0);
+
+        scrabbleBinary newbin = new scrabbleBinary(newvalue);
+
+        if (newvalue.charAt(0) == '1') {
+            newvalue = newbin.twosComplement().getValue();
+            newvalue = "-" + newvalue;
+        }
+        var newint = Integer.parseInt(newvalue,2);
+        scrabbleInt nSuma2 = new scrabbleInt(binInt / newint);
+        assertEquals(nSuma2.toScrabBinary(), bin.div(newbin));
+    }
 
 }

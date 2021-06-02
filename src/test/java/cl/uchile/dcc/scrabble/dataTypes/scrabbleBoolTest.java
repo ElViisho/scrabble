@@ -126,8 +126,8 @@ class scrabbleBoolTest {
         }
         scrabbleBinary expected = new scrabbleBinary(otherValue);
 
-        assertEquals(bin, bin.conj(T));
-        assertEquals(expected, bin.conj(F));
+        assertEquals(bin, T.conj(bin));
+        assertEquals(expected, F.conj(bin));
     }
 
     /**
@@ -156,8 +156,8 @@ class scrabbleBoolTest {
         }
         scrabbleBinary expected = new scrabbleBinary(otherValue);
 
-        assertEquals(bin, bin.disj(F));
-        assertEquals(expected, bin.disj(T));
+        assertEquals(bin, F.disj(bin));
+        assertEquals(expected, T.disj(bin));
     }
 
 }
