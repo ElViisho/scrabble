@@ -49,5 +49,4 @@ public class scrabbleString extends AbstractDataType implements SString{
     public scrabbleString sum(AbstractDataType i){
         return i.sumByString(this);
     }
-
 }

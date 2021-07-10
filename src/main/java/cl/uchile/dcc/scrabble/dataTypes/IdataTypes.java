@@ -1,9 +1,11 @@
 package cl.uchile.dcc.scrabble.dataTypes;
 
+import cl.uchile.dcc.scrabble.composite.Leaf;
+
 /**
  * Interface to be implemented by the abstract Scrabble data type class
  */
-public interface IdataTypes {
+public interface IdataTypes extends Leaf{
     /**
      * Compares the values of the current instance with another object's
      * to see if they're equal
@@ -63,4 +65,5 @@ public interface IdataTypes {
      * @return the concatenated string
      */
     scrabbleString sumByString(scrabbleString s);
+
 }

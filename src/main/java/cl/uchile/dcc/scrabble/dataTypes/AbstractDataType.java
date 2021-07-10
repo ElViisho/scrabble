@@ -103,4 +103,10 @@ public abstract class AbstractDataType implements IdataTypes{
     public scrabbleString sumByString(scrabbleString s){
         return new scrabbleString(s.getValue() + this.toString());
     }
+
+    @Override
+    public IdataTypes eval() {
+        return this;
+    }
+
 }

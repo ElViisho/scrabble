@@ -52,4 +52,5 @@ public interface SLogic extends IdataTypes{
      * @return the result
      */
     public SLogic disjBool(scrabbleBool bool);
+
 }
