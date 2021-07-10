@@ -2,7 +2,7 @@ package cl.uchile.dcc.scrabble.composite;
 
 import cl.uchile.dcc.scrabble.dataTypes.IdataTypes;
 
-public class Sub implements Operation {
+public class Sub extends AbstractOperation {
     private Component value1;
     private Component value2;
 

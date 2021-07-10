@@ -1,8 +1,9 @@
 package cl.uchile.dcc.scrabble.composite;
 
 import cl.uchile.dcc.scrabble.dataTypes.IdataTypes;
+import cl.uchile.dcc.scrabble.dataTypes.scrabbleString;
 
-public class Add implements Operation {
+public class Add extends AbstractOperation {
     private Component value1;
     private Component value2;
 

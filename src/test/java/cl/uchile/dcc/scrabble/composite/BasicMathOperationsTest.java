@@ -224,4 +224,19 @@ public class BasicMathOperationsTest {
         assertEquals(string.concatenate(bool), e.eval());
     }
 
+    @Test
+    void test() {
+        var a = new Add(
+                new scrabbleFloat(6.9),
+                new Disjunction(
+                        new scrabbleBinary("1000"),
+                        (new Sub(
+                                new scrabbleInt(25),
+                                new scrabbleBinary("0101")
+                        )).toBinary()
+                )
+        );
+        System.out.println(a.eval());
+    }
+
 }
