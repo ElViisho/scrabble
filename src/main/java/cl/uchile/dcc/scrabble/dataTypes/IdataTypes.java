@@ -1,11 +1,11 @@
 package cl.uchile.dcc.scrabble.dataTypes;
 
-import cl.uchile.dcc.scrabble.composite.Leaf;
+import cl.uchile.dcc.scrabble.composite.Component;
 
 /**
  * Interface to be implemented by the abstract Scrabble data type class
  */
-public interface IdataTypes extends Leaf{
+public interface IdataTypes extends Component {
     /**
      * Compares the values of the current instance with another object's
      * to see if they're equal
@@ -70,7 +70,7 @@ public interface IdataTypes extends Leaf{
 
     IdataTypes subtract(IdataTypes eval);
 
-    IdataTypes multiplicate(IdataTypes eval);
+    IdataTypes multiply(IdataTypes eval);
 
     IdataTypes divide(IdataTypes eval);
 

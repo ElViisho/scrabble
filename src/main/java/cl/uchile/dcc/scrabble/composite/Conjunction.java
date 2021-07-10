@@ -3,14 +3,16 @@ package cl.uchile.dcc.scrabble.composite;
 import cl.uchile.dcc.scrabble.dataTypes.IdataTypes;
 
 public class Conjunction implements Component{
-    IdataTypes value;
+    private Component value1;
+    private Component value2;
 
     public Conjunction(Component component1, Component component2){
-        this.value = component1.eval().conjunction(component2.eval());
+        this.value1 = component1;
+        this.value2 = component2;
     }
 
     @Override
     public IdataTypes eval() {
-        return this.value;
+        return value1.eval().conjunction(value2.eval());
     }
 }

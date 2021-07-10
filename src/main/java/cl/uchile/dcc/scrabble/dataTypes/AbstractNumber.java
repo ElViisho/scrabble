@@ -115,7 +115,7 @@ public abstract class AbstractNumber extends AbstractDataType implements SNumber
     }
 
     @Override
-    public IdataTypes multiplicate(IdataTypes eval) {
+    public IdataTypes multiply(IdataTypes eval) {
         return eval.ddMult(this);
     }
 

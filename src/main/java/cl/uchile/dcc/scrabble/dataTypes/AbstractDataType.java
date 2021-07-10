@@ -120,7 +120,7 @@ public abstract class AbstractDataType implements IdataTypes{
     }
 
     @Override
-    public IdataTypes multiplicate(IdataTypes eval) {
+    public IdataTypes multiply(IdataTypes eval) {
         return null;
     }
 
