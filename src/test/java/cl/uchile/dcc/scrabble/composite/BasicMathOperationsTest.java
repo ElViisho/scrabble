@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -20,6 +21,11 @@ public class BasicMathOperationsTest {
 
     private scrabbleBinary bin;
     private scrabbleBinary bin2;
+
+    private scrabbleString string;
+    private scrabbleString string2;
+
+    private scrabbleBool bool;
 
     private final int N = 100;
     private Random rng;
@@ -53,87 +59,94 @@ public class BasicMathOperationsTest {
             binValue += Integer.toString(n);
         }
         bin2 = new scrabbleBinary(binValue);
+
+        String str = randomAlphanumeric(strSize);
+        string = new scrabbleString(str);
+        str = randomAlphanumeric(strSize);
+        string2 = new scrabbleString(str);
+
+        bool = new scrabbleBool(rng.nextBoolean());
     }
 
     @RepeatedTest(N)
     void Addtest(){
         var a = new Add(n, n2);
-        assertEquals(a.eval(), n.sum(n2));
+        assertEquals(n.sum(n2), a.eval());
 
         var b = new Add(x, x2);
-        assertEquals(b.eval(), x.add(x2));
+        assertEquals(x.sum(x2), b.eval());
 
         var c = new Add(bin, bin2);
-        assertEquals(c.eval(), bin.add(bin2));
+        assertEquals(bin.sum(bin2), c.eval());
 
         var d = new Add(n, x);
-        assertEquals(d.eval(), n.add(x));
+        assertEquals(n.sum(x), d.eval());
 
         var e = new Add(n, bin);
-        assertEquals(e.eval(), n.add(bin));
+        assertEquals(n.sum(bin), e.eval());
 
         var f = new Add(x, n);
-        assertEquals(f.eval(), x.add(n));
+        assertEquals(x.sum(n), f.eval());
 
         var g = new Add(x, bin);
-        assertEquals(g.eval(), x.add(bin));
+        assertEquals(x.sum(bin), g.eval());
 
         var h = new Add(bin, n);
-        assertEquals(h.eval(), bin.add(n));
+        assertEquals(bin.sum(n), h.eval());
     }
 
     @RepeatedTest(N)
     void Subtest(){
         var a = new Sub(n, n2);
-        assertEquals(a.getValue(), n.subs(n2));
+        assertEquals(n.subs(n2), a.eval());
 
         var b = new Sub(x, x2);
-        assertEquals(b.getValue(), x.subs(x2));
+        assertEquals(x.subs(x2), b.eval());
 
         var c = new Sub(bin, bin2);
-        assertEquals(c.getValue(), bin.subs(bin2));
+        assertEquals(bin.subs(bin2), c.eval());
 
         var d = new Sub(n, x);
-        assertEquals(d.getValue(), n.subs(x));
+        assertEquals(n.subs(x), d.eval());
 
         var e = new Sub(n, bin);
-        assertEquals(e.getValue(), n.subs(bin));
+        assertEquals(n.subs(bin), e.eval());
 
         var f = new Sub(x, n);
-        assertEquals(f.getValue(), x.subs(n));
+        assertEquals(x.subs(n), f.eval());
 
         var g = new Sub(x, bin);
-        assertEquals(g.getValue(), x.subs(bin));
+        assertEquals(x.subs(bin), g.eval());
 
         var h = new Sub(bin, n);
-        assertEquals(h.getValue(), bin.subs(n));
+        assertEquals(bin.subs(n), h.eval());
     }
 
     @RepeatedTest(N)
     void Multtest(){
         var a = new Mult(n, n2);
-        assertEquals(a.getValue(), n.mult(n2));
+        assertEquals(n.mult(n2), a.eval());
 
         var b = new Mult(x, x2);
-        assertEquals(b.getValue(), x.mult(x2));
+        assertEquals(x.mult(x2), b.eval());
 
         var c = new Mult(bin, bin2);
-        assertEquals(c.getValue(), bin.mult(bin2));
+        assertEquals(bin.mult(bin2), c.eval());
 
         var d = new Mult(n, x);
-        assertEquals(d.getValue(), n.mult(x));
+        assertEquals(n.mult(x), d.eval());
 
         var e = new Mult(n, bin);
-        assertEquals(e.getValue(), n.mult(bin));
+        assertEquals(n.mult(bin), e.eval());
 
         var f = new Mult(x, n);
-        assertEquals(f.getValue(), x.mult(n));
+        assertEquals(x.mult(n), f.eval());
 
         var g = new Mult(x, bin);
-        assertEquals(g.getValue(), x.mult(bin));
+        assertEquals(x.mult(bin), g.eval());
 
         var h = new Mult(bin, n);
-        assertEquals(h.getValue(), bin.mult(n));
+        assertEquals(bin.mult(n), h.eval());
     }
 
     @RepeatedTest(N)
@@ -142,13 +155,13 @@ public class BasicMathOperationsTest {
             n2 = new scrabbleInt(rng.nextInt());
         } while (n2.getValue() == 0);
         var a = new Div(n, n2);
-        assertEquals(a.getValue(), n.div(n2));
+        assertEquals(n.div(n2), a.eval());
 
         do {
             x2 = new scrabbleFloat(rng.nextDouble());
         } while (x2.getValue() == 0);
         var b = new Div(x, x2);
-        assertEquals(b.getValue(), x.div(x2));
+        assertEquals(x.div(x2), b.eval());
 
         do {
             String binValue = "";
@@ -160,13 +173,13 @@ public class BasicMathOperationsTest {
             bin2 = new scrabbleBinary(binValue);
         } while (bin2.equals(new scrabbleBinary("0")));
         var c = new Div(bin, bin2);
-        assertEquals(c.getValue(), bin.div(bin2));
+        assertEquals(bin.div(bin2), c.eval());
 
         do {
             x = new scrabbleFloat(rng.nextDouble());
         } while (x.getValue() == 0);
         var d = new Div(n, x);
-        assertEquals(d.getValue(), n.div(x));
+        assertEquals(n.div(x), d.eval());
 
         do {
             String binValue = "";
@@ -178,19 +191,37 @@ public class BasicMathOperationsTest {
             bin = new scrabbleBinary(binValue);
         } while (bin.equals(new scrabbleBinary("0")));
         var e = new Div(n, bin);
-        assertEquals(e.getValue(), n.div(bin));
+        assertEquals(n.div(bin), e.eval());
 
         do {
             n = new scrabbleInt(rng.nextInt());
         } while (n.getValue() == 0);
         var f = new Div(x, n);
-        assertEquals(f.getValue(), x.div(n));
+        assertEquals(x.div(n), f.eval());
 
         var g = new Div(x, bin);
-        assertEquals(g.getValue(), x.div(bin));
+        assertEquals(x.div(bin), g.eval());
 
         var h = new Div(bin, n);
-        assertEquals(h.getValue(), bin.div(n));
+        assertEquals(bin.div(n), h.eval());
     }
-    
+
+    @RepeatedTest(N)
+    void StringTest() {
+        var a = new Add(string, string2);
+        assertEquals(string.concatenate(string2), a.eval());
+
+        var b = new Add(string, n);
+        assertEquals(string.concatenate(n), b.eval());
+
+        var c = new Add(string, x);
+        assertEquals(string.concatenate(x), c.eval());
+
+        var d = new Add(string, bin);
+        assertEquals(string.concatenate(bin), d.eval());
+
+        var e = new Add(string, bool);
+        assertEquals(string.concatenate(bool), e.eval());
+    }
+
 }

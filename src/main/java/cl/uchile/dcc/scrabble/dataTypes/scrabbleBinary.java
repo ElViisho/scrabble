@@ -365,4 +365,19 @@ public class scrabbleBinary extends AbstractNumber implements SLogic{
         return new scrabbleInt(n.getValue() / this.toScrabInt().getValue());
     }
 
+    public IdataTypes negate(){
+        return this.negation();
+    }
+
+    @Override
+    public IdataTypes conjunction(IdataTypes eval) {
+        if (eval instanceof SLogic) return this.conj((SLogic) eval);
+        else return null;
+    }
+
+    @Override
+    public IdataTypes disjunction(IdataTypes eval) {
+        if (eval instanceof SLogic) return this.disj((SLogic) eval);
+        else return null;
+    }
 }

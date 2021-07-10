@@ -49,4 +49,9 @@ public class scrabbleString extends AbstractDataType implements SString{
     public scrabbleString concatenate(AbstractDataType i){
         return i.sumByString(this);
     }
+
+    @Override
+    public IdataTypes add(IdataTypes eval) {
+        return this.concatenate((AbstractDataType) eval);
+    }
 }

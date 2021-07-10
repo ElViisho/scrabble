@@ -129,4 +129,18 @@ public abstract class AbstractDataType implements IdataTypes{
         return null;
     }
 
+    @Override
+    public IdataTypes negate(){
+        return null;
+    }
+
+    @Override
+    public IdataTypes conjunction(IdataTypes eval) {
+        return null;
+    }
+
+    @Override
+    public IdataTypes disjunction(IdataTypes eval) {
+        return null;
+    }
 }

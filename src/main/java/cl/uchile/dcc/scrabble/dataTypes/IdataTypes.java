@@ -73,4 +73,10 @@ public interface IdataTypes extends Leaf{
     IdataTypes multiplicate(IdataTypes eval);
 
     IdataTypes divide(IdataTypes eval);
+
+    IdataTypes negate();
+
+    IdataTypes conjunction(IdataTypes eval);
+
+    IdataTypes disjunction(IdataTypes eval);
 }
