@@ -93,4 +93,29 @@ public abstract class AbstractNumber extends AbstractDataType implements SNumber
         scrabbleInt newInt = new scrabbleInt(newValue);
         return newInt.toScrabBinary();
     }
+
+
+    @Override
+    public IdataTypes add(IdataTypes eval) {
+        if (eval instanceof SNumber) return this.sum((SNumber) eval);
+        else return null;
+    }
+
+    @Override
+    public IdataTypes subtract(IdataTypes eval) {
+        if (eval instanceof SNumber) return this.subs((SNumber) eval);
+        else return null;
+    }
+
+    @Override
+    public IdataTypes multiplicate(IdataTypes eval) {
+        if (eval instanceof SNumber) return this.mult((SNumber) eval);
+        else return null;
+    }
+
+    @Override
+    public IdataTypes divide(IdataTypes eval) {
+        if (eval instanceof SNumber) return this.div((SNumber) eval);
+        else return null;
+    }
 }

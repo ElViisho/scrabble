@@ -109,4 +109,24 @@ public abstract class AbstractDataType implements IdataTypes{
         return this;
     }
 
+    @Override
+    public IdataTypes add(IdataTypes eval) {
+        return null;
+    }
+
+    @Override
+    public IdataTypes subtract(IdataTypes eval) {
+        return null;
+    }
+
+    @Override
+    public IdataTypes multiplicate(IdataTypes eval) {
+        return null;
+    }
+
+    @Override
+    public IdataTypes divide(IdataTypes eval) {
+        return null;
+    }
+
 }

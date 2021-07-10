@@ -5,5 +5,5 @@ package cl.uchile.dcc.scrabble.dataTypes;
  * It encapsulates all the concatenations with other types
  */
 public interface SString extends IdataTypes{
-    public scrabbleString sum(AbstractDataType i);
+    public scrabbleString concatenate(AbstractDataType i);
 }

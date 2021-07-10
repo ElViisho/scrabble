@@ -1,16 +1,16 @@
 package cl.uchile.dcc.scrabble.composite;
 
-import cl.uchile.dcc.scrabble.dataTypes.scrabbleBinary;
-import cl.uchile.dcc.scrabble.dataTypes.scrabbleFloat;
-import cl.uchile.dcc.scrabble.dataTypes.scrabbleInt;
+import cl.uchile.dcc.scrabble.dataTypes.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class BasicOperationsTest {
+public class BasicMathOperationsTest {
 
     private scrabbleInt n;
     private scrabbleInt n2;
@@ -58,28 +58,28 @@ public class BasicOperationsTest {
     @RepeatedTest(N)
     void Addtest(){
         var a = new Add(n, n2);
-        assertEquals(a.getValue(), n.sum(n2));
+        assertEquals(a.eval(), n.sum(n2));
 
         var b = new Add(x, x2);
-        assertEquals(b.getValue(), x.sum(x2));
+        assertEquals(b.eval(), x.add(x2));
 
         var c = new Add(bin, bin2);
-        assertEquals(c.getValue(), bin.sum(bin2));
+        assertEquals(c.eval(), bin.add(bin2));
 
         var d = new Add(n, x);
-        assertEquals(d.getValue(), n.sum(x));
+        assertEquals(d.eval(), n.add(x));
 
         var e = new Add(n, bin);
-        assertEquals(e.getValue(), n.sum(bin));
+        assertEquals(e.eval(), n.add(bin));
 
         var f = new Add(x, n);
-        assertEquals(f.getValue(), x.sum(n));
+        assertEquals(f.eval(), x.add(n));
 
         var g = new Add(x, bin);
-        assertEquals(g.getValue(), x.sum(bin));
+        assertEquals(g.eval(), x.add(bin));
 
         var h = new Add(bin, n);
-        assertEquals(h.getValue(), bin.sum(n));
+        assertEquals(h.eval(), bin.add(n));
     }
 
     @RepeatedTest(N)
@@ -192,4 +192,5 @@ public class BasicOperationsTest {
         var h = new Div(bin, n);
         assertEquals(h.getValue(), bin.div(n));
     }
+    
 }

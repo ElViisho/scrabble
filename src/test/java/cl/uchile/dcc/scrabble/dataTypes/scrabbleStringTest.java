@@ -143,23 +143,23 @@ public class scrabbleStringTest {
      */
     @RepeatedTest(N)
     void sumTest() {
-        var sumString = string.sum(newString);
+        var sumString = string.concatenate(newString);
         scrabbleString expectedStr = new scrabbleString(string.getValue() + newStr);
         assertEquals(expectedStr, sumString);
 
-        var sumBool = string.sum(newBoolean);
+        var sumBool = string.concatenate(newBoolean);
         scrabbleString expectedBool = new scrabbleString(string.toString() + newBoolean.getValue());
         assertEquals(expectedBool, sumBool);
 
-        var sumFloat = string.sum(newFloat);
+        var sumFloat = string.concatenate(newFloat);
         scrabbleString expectedFloat = new scrabbleString(string.toString() + newFloat.getValue());
         assertEquals(expectedFloat, sumFloat);
 
-        var sumInt = string.sum(newInt);
+        var sumInt = string.concatenate(newInt);
         scrabbleString expectedInt = new scrabbleString(string.toString() + newInt.getValue());
         assertEquals(expectedInt, sumInt);
 
-        var sumBin = string.sum(newBinary);
+        var sumBin = string.concatenate(newBinary);
         scrabbleString expectedBin = new scrabbleString(string.toString() + newBinary.getValue());
         assertEquals(expectedBin, sumBin);
     }

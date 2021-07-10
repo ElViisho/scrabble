@@ -66,4 +66,11 @@ public interface IdataTypes extends Leaf{
      */
     scrabbleString sumByString(scrabbleString s);
 
+    IdataTypes add(IdataTypes eval);
+
+    IdataTypes subtract(IdataTypes eval);
+
+    IdataTypes multiplicate(IdataTypes eval);
+
+    IdataTypes divide(IdataTypes eval);
 }
