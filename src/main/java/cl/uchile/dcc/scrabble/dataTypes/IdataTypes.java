@@ -79,4 +79,16 @@ public interface IdataTypes extends Leaf{
     IdataTypes conjunction(IdataTypes eval);
 
     IdataTypes disjunction(IdataTypes eval);
+
+    IdataTypes ddAdd(AbstractNumber abstractNumber);
+
+    IdataTypes ddSub(AbstractNumber abstractNumber);
+
+    IdataTypes ddMult(AbstractNumber abstractNumber);
+
+    IdataTypes ddDiv(AbstractNumber abstractNumber);
+
+    IdataTypes ddConj(SLogic logic);
+
+    IdataTypes ddDisj(SLogic logic);
 }

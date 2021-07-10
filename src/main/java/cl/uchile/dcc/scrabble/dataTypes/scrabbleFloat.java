@@ -131,4 +131,44 @@ public class scrabbleFloat extends AbstractNumber {
     }
 
 
+    /**
+     * {@inheritDoc}
+     * @param bin the number that's summing this
+     * @return the result
+     */
+    @Override
+    public scrabbleBinary sumByBinary(scrabbleBinary bin){
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     * @param bin the number that's subtracting this
+     * @return the result
+     */
+    @Override
+    public scrabbleBinary subsByBinary(scrabbleBinary bin){
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     * @param bin the number that's multiplying this
+     * @return the result
+     */
+    @Override
+    public scrabbleBinary multByBinary(scrabbleBinary bin){
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     * @param bin the number that's dividing this
+     * @return the result
+     */
+    @Override
+    public scrabbleBinary divByBinary(scrabbleBinary bin){
+        return null;
+    }
+
 }

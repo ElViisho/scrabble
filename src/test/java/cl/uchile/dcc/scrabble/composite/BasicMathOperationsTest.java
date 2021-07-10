@@ -32,7 +32,7 @@ public class BasicMathOperationsTest {
     private int strSize;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         int seed = new Random().nextInt();
         rng = new Random(seed);
 
@@ -48,13 +48,13 @@ public class BasicMathOperationsTest {
 
         String binValue = "";
         strSize = rng.nextInt(20) + 1;
-        for (int i = 0; i< strSize; i++){
+        for (int i = 0; i < strSize; i++) {
             int n = rng.nextInt(2);
             binValue += Integer.toString(n);
         }
         bin = new scrabbleBinary(binValue);
         binValue = "";
-        for (int i = 0; i< strSize; i++){
+        for (int i = 0; i < strSize; i++) {
             int n = rng.nextInt(2);
             binValue += Integer.toString(n);
         }
@@ -69,7 +69,7 @@ public class BasicMathOperationsTest {
     }
 
     @RepeatedTest(N)
-    void Addtest(){
+    void Addtest() {
         var a = new Add(n, n2);
         assertEquals(n.sum(n2), a.eval());
 
@@ -96,7 +96,7 @@ public class BasicMathOperationsTest {
     }
 
     @RepeatedTest(N)
-    void Subtest(){
+    void Subtest() {
         var a = new Sub(n, n2);
         assertEquals(n.subs(n2), a.eval());
 
@@ -123,7 +123,7 @@ public class BasicMathOperationsTest {
     }
 
     @RepeatedTest(N)
-    void Multtest(){
+    void Multtest() {
         var a = new Mult(n, n2);
         assertEquals(n.mult(n2), a.eval());
 
@@ -150,7 +150,7 @@ public class BasicMathOperationsTest {
     }
 
     @RepeatedTest(N)
-    void Divtest(){
+    void Divtest() {
         do {
             n2 = new scrabbleInt(rng.nextInt());
         } while (n2.getValue() == 0);
@@ -166,7 +166,7 @@ public class BasicMathOperationsTest {
         do {
             String binValue = "";
             strSize = rng.nextInt(20) + 1;
-            for (int i = 0; i< strSize; i++){
+            for (int i = 0; i < strSize; i++) {
                 int n = rng.nextInt(2);
                 binValue += Integer.toString(n);
             }
@@ -184,7 +184,7 @@ public class BasicMathOperationsTest {
         do {
             String binValue = "";
             strSize = rng.nextInt(20) + 1;
-            for (int i = 0; i< strSize; i++){
+            for (int i = 0; i < strSize; i++) {
                 int n = rng.nextInt(2);
                 binValue += Integer.toString(n);
             }

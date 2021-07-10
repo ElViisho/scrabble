@@ -142,14 +142,22 @@ public class scrabbleBool extends AbstractDataType implements SLogic{
 
     @Override
     public IdataTypes conjunction(IdataTypes eval) {
-        if (eval instanceof SLogic) return this.conj((SLogic) eval);
-        else return null;
+        return eval.ddConj(this);
+    }
+
+    @Override
+    public IdataTypes ddConj(SLogic logic) {
+        return logic.conj(this);
     }
 
     @Override
     public IdataTypes disjunction(IdataTypes eval) {
-        if (eval instanceof SLogic) return this.disj((SLogic) eval);
-        else return null;
+        return eval.ddDisj(this);
+    }
+
+    @Override
+    public IdataTypes ddDisj(SLogic logic) {
+        return logic.disj(this);
     }
 
 }

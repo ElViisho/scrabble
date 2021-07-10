@@ -94,28 +94,43 @@ public abstract class AbstractNumber extends AbstractDataType implements SNumber
         return newInt.toScrabBinary();
     }
 
-
     @Override
     public IdataTypes add(IdataTypes eval) {
-        if (eval instanceof SNumber) return this.sum((SNumber) eval);
-        else return null;
+        return eval.ddAdd(this);
+    }
+
+    @Override
+    public IdataTypes ddAdd(AbstractNumber abstractNumber) {
+        return abstractNumber.sum(this);
     }
 
     @Override
     public IdataTypes subtract(IdataTypes eval) {
-        if (eval instanceof SNumber) return this.subs((SNumber) eval);
-        else return null;
+        return eval.ddSub(this);
+    }
+
+    @Override
+    public IdataTypes ddSub(AbstractNumber abstractNumber) {
+        return abstractNumber.subs(this);
     }
 
     @Override
     public IdataTypes multiplicate(IdataTypes eval) {
-        if (eval instanceof SNumber) return this.mult((SNumber) eval);
-        else return null;
+        return eval.ddMult(this);
+    }
+
+    @Override
+    public IdataTypes ddMult(AbstractNumber abstractNumber) {
+        return abstractNumber.mult(this);
     }
 
     @Override
     public IdataTypes divide(IdataTypes eval) {
-        if (eval instanceof SNumber) return this.div((SNumber) eval);
-        else return null;
+        return eval.ddDiv(this);
+    }
+
+    @Override
+    public IdataTypes ddDiv(AbstractNumber abstractNumber) {
+        return abstractNumber.div(this);
     }
 }

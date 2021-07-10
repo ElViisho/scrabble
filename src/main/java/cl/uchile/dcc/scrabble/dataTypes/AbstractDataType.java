@@ -143,4 +143,34 @@ public abstract class AbstractDataType implements IdataTypes{
     public IdataTypes disjunction(IdataTypes eval) {
         return null;
     }
+
+    @Override
+    public IdataTypes ddAdd(AbstractNumber abstractNumber) {
+        return null;
+    }
+
+    @Override
+    public IdataTypes ddSub(AbstractNumber abstractNumber) {
+        return null;
+    }
+
+    @Override
+    public IdataTypes ddMult(AbstractNumber abstractNumber) {
+        return null;
+    }
+
+    @Override
+    public IdataTypes ddDiv(AbstractNumber abstractNumber) {
+        return null;
+    }
+
+    @Override
+    public IdataTypes ddConj(SLogic logic) {
+        return null;
+    }
+
+    @Override
+    public IdataTypes ddDisj(SLogic logic) {
+        return null;
+    }
 }
