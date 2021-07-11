@@ -24,6 +24,10 @@ public class NullTest {
     private Random rng;
     private int strSize;
 
+    /**
+     * The set up to be done before each test.
+     * The values are generated at random so that the tests are not biased
+     */
     @BeforeEach
     void setUp() {
         int seed = new Random().nextInt();
@@ -48,6 +52,11 @@ public class NullTest {
 
         bool = new scrabbleBool(rng.nextBoolean());
     }
+
+    /**
+     * Test from now onward check that all operations that are not valid return null.
+     */
+
 
     @RepeatedTest(N)
     void AddTest() {

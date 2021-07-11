@@ -31,6 +31,10 @@ public class BasicMathOperationsTest {
     private Random rng;
     private int strSize;
 
+    /**
+     * The set up to be done before each test.
+     * The values are generated at random so that the tests are not biased
+     */
     @BeforeEach
     void setUp() {
         int seed = new Random().nextInt();
@@ -68,6 +72,10 @@ public class BasicMathOperationsTest {
         bool = new scrabbleBool(rng.nextBoolean());
     }
 
+    /**
+     * Tests for checking that the Add class functions correctly, adding the different values
+     * of different types.
+     */
     @RepeatedTest(N)
     void Addtest() {
         var a = new Add(n, n2);
@@ -95,6 +103,10 @@ public class BasicMathOperationsTest {
         assertEquals(bin.sum(n), h.eval());
     }
 
+    /**
+     * Tests for checking that the Sub class functions correctly, subtraction the different values
+     * of different types.
+     */
     @RepeatedTest(N)
     void Subtest() {
         var a = new Sub(n, n2);
@@ -122,6 +134,10 @@ public class BasicMathOperationsTest {
         assertEquals(bin.subs(n), h.eval());
     }
 
+    /**
+     * Tests for checking that the Mult class functions correctly, multiplying the different values
+     * of different types.
+     */
     @RepeatedTest(N)
     void Multtest() {
         var a = new Mult(n, n2);
@@ -149,6 +165,10 @@ public class BasicMathOperationsTest {
         assertEquals(bin.mult(n), h.eval());
     }
 
+    /**
+     * Tests for checking that the Division class functions correctly, dividing the different values
+     * of different types. It checks the values are not zero before the test.
+     */
     @RepeatedTest(N)
     void Divtest() {
         do {
@@ -206,6 +226,10 @@ public class BasicMathOperationsTest {
         assertEquals(bin.div(n), h.eval());
     }
 
+    /**
+     * Tests for checking the concatenation of string with other types with the Add
+     * class works correctly.
+     */
     @RepeatedTest(N)
     void StringTest() {
         var a = new Add(string, string2);
@@ -222,21 +246,6 @@ public class BasicMathOperationsTest {
 
         var e = new Add(string, bool);
         assertEquals(string.concatenate(bool), e.eval());
-    }
-
-    @Test
-    void test() {
-        var a = new Add(
-                new scrabbleFloat(6.9),
-                new Disjunction(
-                        new scrabbleBinary("1000"),
-                        (new Sub(
-                                new scrabbleInt(25),
-                                new scrabbleBinary("0101")
-                        )).toBinary()
-                )
-        );
-        System.out.println(a.eval());
     }
 
 }

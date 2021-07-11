@@ -135,26 +135,52 @@ public class scrabbleBool extends AbstractDataType implements SLogic{
         return new scrabbleBinary(String.valueOf(newArr));
     }
 
+    /**
+     * {@inheritDoc}
+     * @return the negated value
+     */
     @Override
     public IdataTypes negate(){
         return this.negation();
     }
 
+    /**
+     * It calls the double dispatch function ddConj of eval, so that it doesn't have
+     * to know the type of the instance that will be evaluated with this.
+     * @param eval the value that will be evaluated with this
+     * @return the conjunction of the values, or null if instance is not operable
+     */
     @Override
     public IdataTypes conjunction(IdataTypes eval) {
         return eval.ddConj(this);
     }
 
+    /**
+     * {@inheritDoc}
+     * @param logic the value that will be evaluated with this
+     * @return the conjunction
+     */
     @Override
     public IdataTypes ddConj(SLogic logic) {
         return logic.conj(this);
     }
 
+    /**
+     * It calls the double dispatch function ddDisj of eval, so that it doesn't have
+     * to know the type of the instance that will be evaluated with this.
+     * @param eval the value that will be evaluated with this
+     * @return the disjunction of the values, or null if instance is not operable
+     */
     @Override
     public IdataTypes disjunction(IdataTypes eval) {
         return eval.ddDisj(this);
     }
 
+    /**
+     * {@inheritDoc}
+     * @param logic the value that will be evaluated with this
+     * @return the disjunction
+     */
     @Override
     public IdataTypes ddDisj(SLogic logic) {
         return logic.disj(this);

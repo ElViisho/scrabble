@@ -58,7 +58,6 @@ public interface IdataTypes extends Component {
      */
     scrabbleBinary toScrabBinary();
 
-
     /**
      * For using double dispatch. This will be concatenated at the end of s
      * @param s the string that will concatenate this
@@ -66,29 +65,100 @@ public interface IdataTypes extends Component {
      */
     scrabbleString sumByString(scrabbleString s);
 
+
+    /**
+     * The function that's called by the Add class when being evaluated
+     * @param eval the value that will be added to this
+     * @return the sum of the values
+     */
     IdataTypes add(IdataTypes eval);
 
+    /**
+     * The function that's called by the Sub class when being evaluated
+     * @param eval the value that will be subtracted to this
+     * @return the subtraction of the values
+     */
     IdataTypes subtract(IdataTypes eval);
 
+    /**
+     * The function that's called by the Mult class when being evaluated
+     * @param eval the value that will be multiplied to this
+     * @return the multiplication of the values
+     */
     IdataTypes multiply(IdataTypes eval);
 
+    /**
+     * The function that's called by the Div class when being evaluated
+     * @param eval the value that will divide this
+     * @return the sum of the values
+     */
     IdataTypes divide(IdataTypes eval);
 
+    /**
+     * The function that's called by the Negation class when being evaluated
+     * @return the negation of this
+     */
     IdataTypes negate();
 
+    /**
+     * The function that's called by the Conjunction class when being evaluated
+     * @param eval the value that will be evaluated with this
+     * @return the conjunction of the values
+     */
     IdataTypes conjunction(IdataTypes eval);
 
+    /**
+     * The function that's called by the Disjunction class when being evaluated
+     * @param eval the value that will be evaluated with this
+     * @return the disjunction of the values
+     */
     IdataTypes disjunction(IdataTypes eval);
 
-    IdataTypes ddAdd(AbstractNumber abstractNumber);
+    /**
+     * For using double dispatch in the composite pattern, so the class
+     * doesn't have to ask the type of the other. This will be added by n
+     * @param n the value that will add this
+     * @return the sum
+     */
+    IdataTypes ddAdd(AbstractNumber n);
 
-    IdataTypes ddSub(AbstractNumber abstractNumber);
+    /**
+     * For using double dispatch in the composite pattern, so the class
+     * doesn't have to ask the type of the other. This will be subtracted from n
+     * @param n the value that will be subtracted from this
+     * @return the subtraction
+     */
+    IdataTypes ddSub(AbstractNumber n);
 
-    IdataTypes ddMult(AbstractNumber abstractNumber);
+    /**
+     * For using double dispatch in the composite pattern, so the class
+     * doesn't have to ask the type of the other. This will be multiplied by n
+     * @param n the value that will be multiplied by this
+     * @return the multiplication
+     */
+    IdataTypes ddMult(AbstractNumber n);
 
-    IdataTypes ddDiv(AbstractNumber abstractNumber);
+    /**
+     * For using double dispatch in the composite pattern, so the class
+     * doesn't have to ask the type of the other. This will be divided by n
+     * @param n the value that will be divided by this
+     * @return the division
+     */
+    IdataTypes ddDiv(AbstractNumber n);
 
+    /**
+     * For using double dispatch in the composite pattern, so the class
+     * doesn't have to ask the type of the other. This will be evaluated with logic
+     * @param logic the value that will be evaluated with this
+     * @return the conjunction
+     */
     IdataTypes ddConj(SLogic logic);
 
+    /**
+     * For using double dispatch in the composite pattern, so the class
+     * doesn't have to ask the type of the other. This will be evaluated with logic
+     * @param logic the value that will be evaluated with this
+     * @return the disjunction
+     */
     IdataTypes ddDisj(SLogic logic);
 }

@@ -25,6 +25,10 @@ public class BasicLogicTest {
     private Random rng;
     private final int N = 100;
 
+    /**
+     * The set up to be done before each test.
+     * The values are generated at random so that the tests are not biased
+     */
     @BeforeEach
     void setUp(){
         seed = new Random().nextInt();
@@ -50,6 +54,9 @@ public class BasicLogicTest {
         bin2 = new scrabbleBinary(binValue);
     }
 
+    /**
+     * Tests for checking that the Negation class functions correctly with the booleans and binaries
+     */
     @RepeatedTest(N)
     void negationTest() {
         var a = new Negation(bool);
@@ -59,6 +66,10 @@ public class BasicLogicTest {
         assertEquals(bin.negation(), b.eval());
     }
 
+    /**
+     * Tests for checking that the Conjunction class functions correctly, evaluating the different values
+     * of different types.
+     */
     @RepeatedTest(N)
     void conjunctionTest() {
         var a = new Conjunction(bool, bool2);
@@ -74,6 +85,10 @@ public class BasicLogicTest {
         assertEquals(bin2.conj(bool2), d.eval());
     }
 
+    /**
+     * Tests for checking that the Disjunction class functions correctly, evaluating the different values
+     * of different types.
+     */
     @RepeatedTest(N)
     void disjunctionTest() {
         var a = new Disjunction(bool, bool2);
