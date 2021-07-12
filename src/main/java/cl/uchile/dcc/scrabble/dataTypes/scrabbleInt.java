@@ -40,7 +40,7 @@ public class scrabbleInt extends AbstractNumber {
     @Override
     public scrabbleString toScrabString() {
         String s = String.valueOf(value);
-        return new scrabbleString(s);
+        return TypeFactory.createSString(s);
     }
 
     /**
@@ -49,7 +49,7 @@ public class scrabbleInt extends AbstractNumber {
      */
     @Override
     public scrabbleFloat toScrabFloat() {
-        return new scrabbleFloat(value);
+        return TypeFactory.createSFloat(value);
     }
 
     /**
@@ -74,17 +74,17 @@ public class scrabbleInt extends AbstractNumber {
             strValue = resto + strValue;
             intValue = intValue /2;
         }
-        scrabbleBinary binValue = new scrabbleBinary(strValue);
+        scrabbleBinary binValue = TypeFactory.createSBinary(strValue);
         if (value < 0) {
             strValue = binValue.twosComplement().getValue();
             while (strValue.length() < 32) {
                 strValue = '1' + strValue;
             }
-            binValue = new scrabbleBinary(strValue);
+            binValue = TypeFactory.createSBinary(strValue);
         }
         else{
             strValue = '0' + binValue.getValue();
-            binValue = new scrabbleBinary(strValue);
+            binValue = TypeFactory.createSBinary(strValue);
         }
         return binValue;
     }
@@ -136,7 +136,7 @@ public class scrabbleInt extends AbstractNumber {
      */
     @Override
     public SNumber sumByInt(scrabbleInt n){
-        return new scrabbleInt(n.getValue() + this.value);
+        return TypeFactory.createSInt(n.getValue() + this.value);
     }
 
     /**
@@ -146,7 +146,7 @@ public class scrabbleInt extends AbstractNumber {
      */
     @Override
     public SNumber subsByInt(scrabbleInt n){
-        return new scrabbleInt(n.getValue() - this.value);
+        return TypeFactory.createSInt(n.getValue() - this.value);
     }
 
     /**
@@ -156,7 +156,7 @@ public class scrabbleInt extends AbstractNumber {
      */
     @Override
     public SNumber multByInt(scrabbleInt n){
-        return new scrabbleInt(n.getValue() * this.value);
+        return TypeFactory.createSInt(n.getValue() * this.value);
     }
 
     /**
@@ -166,7 +166,7 @@ public class scrabbleInt extends AbstractNumber {
      */
     @Override
     public SNumber divByInt(scrabbleInt n){
-        return new scrabbleInt(n.getValue() / this.value);
+        return TypeFactory.createSInt(n.getValue() / this.value);
     }
 
 

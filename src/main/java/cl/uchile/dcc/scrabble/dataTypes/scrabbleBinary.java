@@ -61,7 +61,7 @@ public class scrabbleBinary extends AbstractNumber implements SLogic{
      */
     @Override
     public scrabbleString toScrabString() {
-        return new scrabbleString(value);
+        return TypeFactory.createSString(value);
     }
 
     /**
@@ -71,9 +71,9 @@ public class scrabbleBinary extends AbstractNumber implements SLogic{
     @Override
     public scrabbleInt toScrabInt(){
         if (bitToInt(value.charAt(0)) == 0){
-            return new scrabbleInt(positiveBinToInt(value));
+            return TypeFactory.createSInt(positiveBinToInt(value));
         } else {
-            return new scrabbleInt(negativeBinaryToInt(value));
+            return TypeFactory.createSInt(negativeBinaryToInt(value));
         }
     }
 
@@ -84,9 +84,9 @@ public class scrabbleBinary extends AbstractNumber implements SLogic{
     @Override
     public scrabbleFloat toScrabFloat(){
         if (bitToInt(value.charAt(0)) == 0){
-            return new scrabbleFloat(positiveBinToInt(value));
+            return TypeFactory.createSFloat(positiveBinToInt(value));
         } else {
-            return new scrabbleFloat(negativeBinaryToInt(value));
+            return TypeFactory.createSFloat(negativeBinaryToInt(value));
         }
     }
 
@@ -148,7 +148,7 @@ public class scrabbleBinary extends AbstractNumber implements SLogic{
                 newArr[i] = n;
             }
         }
-        return new scrabbleBinary(String.valueOf(newArr));
+        return TypeFactory.createSBinary(String.valueOf(newArr));
     }
 
     /**
@@ -203,7 +203,7 @@ public class scrabbleBinary extends AbstractNumber implements SLogic{
             arr[i] = (value1.charAt(i) == '1' && value2.charAt(i) == '1') ? '1' : '0';
         }
         String s = String.valueOf(arr);
-        return new scrabbleBinary(s);
+        return TypeFactory.createSBinary(s);
     }
 
     /**
@@ -229,7 +229,7 @@ public class scrabbleBinary extends AbstractNumber implements SLogic{
             arr[i] = (value1.charAt(i) == '1' || value2.charAt(i) == '1') ? '1' : '0';
         }
         String s = String.valueOf(arr);
-        return new scrabbleBinary(s);
+        return TypeFactory.createSBinary(s);
     }
 
     /**
@@ -245,7 +245,7 @@ public class scrabbleBinary extends AbstractNumber implements SLogic{
             if (n == '1') newArr[i] = '0';
             else newArr[i] = '1';
         }
-        return new scrabbleBinary(String.valueOf(newArr));
+        return TypeFactory.createSBinary(String.valueOf(newArr));
     }
 
     /**
@@ -256,14 +256,14 @@ public class scrabbleBinary extends AbstractNumber implements SLogic{
     @Override
     public scrabbleBinary conjBool(scrabbleBool bool){
         if (bool.getValue()) {
-            return new scrabbleBinary(this.value);
+            return TypeFactory.createSBinary(this.value);
         }
         int length = this.value.length();
         char newArr[] = new char[length];
         for (int i=0; i<length; i++) {
             newArr[i] = '0';
         }
-        return new scrabbleBinary(String.valueOf(newArr));
+        return TypeFactory.createSBinary(String.valueOf(newArr));
     }
 
     /**
@@ -274,14 +274,14 @@ public class scrabbleBinary extends AbstractNumber implements SLogic{
     @Override
     public scrabbleBinary disjBool(scrabbleBool bool){
         if (!bool.getValue()) {
-            return new scrabbleBinary(this.value);
+            return TypeFactory.createSBinary(this.value);
         }
         int length = this.value.length();
         char newArr[] = new char[length];
         for (int i=0; i<length; i++) {
             newArr[i] = '1';
         }
-        return new scrabbleBinary(String.valueOf(newArr));
+        return TypeFactory.createSBinary(String.valueOf(newArr));
     }
 
 
@@ -332,7 +332,7 @@ public class scrabbleBinary extends AbstractNumber implements SLogic{
      */
     @Override
     public scrabbleInt sumByInt(scrabbleInt n) {
-        return new scrabbleInt(n.getValue() + this.toScrabInt().getValue());
+        return TypeFactory.createSInt(n.getValue() + this.toScrabInt().getValue());
     }
 
     /**
@@ -342,7 +342,7 @@ public class scrabbleBinary extends AbstractNumber implements SLogic{
      */
     @Override
     public scrabbleInt subsByInt(scrabbleInt n) {
-        return new scrabbleInt(n.getValue() - this.toScrabInt().getValue());
+        return TypeFactory.createSInt(n.getValue() - this.toScrabInt().getValue());
     }
 
     /**
@@ -352,7 +352,7 @@ public class scrabbleBinary extends AbstractNumber implements SLogic{
      */
     @Override
     public scrabbleInt multByInt(scrabbleInt n) {
-        return new scrabbleInt(n.getValue() * this.toScrabInt().getValue());
+        return TypeFactory.createSInt(n.getValue() * this.toScrabInt().getValue());
     }
 
     /**
@@ -362,7 +362,57 @@ public class scrabbleBinary extends AbstractNumber implements SLogic{
      */
     @Override
     public scrabbleInt divByInt(scrabbleInt n) {
-        return new scrabbleInt(n.getValue() / this.toScrabInt().getValue());
+        return TypeFactory.createSInt(n.getValue() / this.toScrabInt().getValue());
     }
 
+    /**
+     * {@inheritDoc}
+     * @return the negated value
+     */
+    @Override
+    public IdataTypes negate(){
+        return this.negation();
+    }
+
+    /**
+     * It calls the double dispatch function ddConj of eval, so that it doesn't have
+     * to know the type of the instance that will be evaluated with this.
+     * @param eval the value that will be evaluated with this
+     * @return the conjunction of the values, or null if instance is not operable
+     */
+    @Override
+    public IdataTypes conjunction(IdataTypes eval) {
+        return eval.ddConj(this);
+    }
+
+    /**
+     * {@inheritDoc}
+     * @param logic the value that will be evaluated with this
+     * @return the conjunction
+     */
+    @Override
+    public IdataTypes ddConj(SLogic logic) {
+        return logic.conj(this);
+    }
+
+    /**
+     * It calls the double dispatch function ddDisj of eval, so that it doesn't have
+     * to know the type of the instance that will be evaluated with this.
+     * @param eval the value that will be evaluated with this
+     * @return the disjunction of the values, or null if instance is not operable
+     */
+    @Override
+    public IdataTypes disjunction(IdataTypes eval) {
+        return eval.ddDisj(this);
+    }
+
+    /**
+     * {@inheritDoc}
+     * @param logic the value that will be evaluated with this
+     * @return the disjunction
+     */
+    @Override
+    public IdataTypes ddDisj(SLogic logic) {
+        return logic.disj(this);
+    }
 }

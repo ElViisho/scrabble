@@ -42,24 +42,24 @@ public class scrabbleStringTest {
         rng = new Random(seed);
         int strSize = rng.nextInt(20);
         str = randomAlphanumeric(strSize);
-        string = new scrabbleString(str);
+        string = TypeFactory.createSString(str);
 
         //Sum
         strSize = rng.nextInt(20);
         newStr = randomAlphanumeric(strSize);
-        newString = new scrabbleString(newStr);
+        newString = TypeFactory.createSString(newStr);
 
         newBool = rng.nextBoolean();
-        newBoolean = new scrabbleBool(newBool);
+        newBoolean = TypeFactory.createSBool(newBool);
 
         newX = rng.nextDouble();
-        newFloat = new scrabbleFloat(newX);
+        newFloat = TypeFactory.createSFloat(newX);
 
         newN = rng.nextInt();
-        newInt = new scrabbleInt(newN);
+        newInt = TypeFactory.createSInt(newN);
 
         newBin = RandomStringUtils.random(rng.nextInt(20), 0, Character.MAX_CODE_POINT, true, false, null, rng);
-        newBinary = new scrabbleBinary(newBin);
+        newBinary = TypeFactory.createSBinary(newBin);
     }
 
     /**
@@ -69,14 +69,14 @@ public class scrabbleStringTest {
      */
     @RepeatedTest(N)
     void stringsTest(){
-        var expectedString = new scrabbleString(str);
+        var expectedString = TypeFactory.createSString(str);
         assertEquals(expectedString, string);
         int strSize = rng.nextInt(20) + 1;
         String newStr;
         do {
             newStr = randomAlphanumeric(strSize);
         } while (newStr.equals(str));
-        var differentString = new scrabbleString(newStr);
+        var differentString = TypeFactory.createSString(newStr);
         assertNotEquals(differentString, string);
     }
 
@@ -84,9 +84,9 @@ public class scrabbleStringTest {
     void valueSetterTest(){
         int strSize = rng.nextInt(20) + 1;
         String newstr = randomAlphanumeric(strSize);
-        scrabbleString newString = new scrabbleString("");
+        scrabbleString newString = TypeFactory.createSString("");
         newString.setValue(newstr);
-        assertEquals(new scrabbleString(newstr), newString);
+        assertEquals(TypeFactory.createSString(newstr), newString);
     }
 
     /**
@@ -143,24 +143,24 @@ public class scrabbleStringTest {
      */
     @RepeatedTest(N)
     void sumTest() {
-        var sumString = string.sum(newString);
-        scrabbleString expectedStr = new scrabbleString(string.getValue() + newStr);
+        var sumString = string.concatenate(newString);
+        scrabbleString expectedStr = TypeFactory.createSString(string.getValue() + newStr);
         assertEquals(expectedStr, sumString);
 
-        var sumBool = string.sum(newBoolean);
-        scrabbleString expectedBool = new scrabbleString(string.toString() + newBoolean.getValue());
+        var sumBool = string.concatenate(newBoolean);
+        scrabbleString expectedBool = TypeFactory.createSString(string.toString() + newBoolean.getValue());
         assertEquals(expectedBool, sumBool);
 
-        var sumFloat = string.sum(newFloat);
-        scrabbleString expectedFloat = new scrabbleString(string.toString() + newFloat.getValue());
+        var sumFloat = string.concatenate(newFloat);
+        scrabbleString expectedFloat = TypeFactory.createSString(string.toString() + newFloat.getValue());
         assertEquals(expectedFloat, sumFloat);
 
-        var sumInt = string.sum(newInt);
-        scrabbleString expectedInt = new scrabbleString(string.toString() + newInt.getValue());
+        var sumInt = string.concatenate(newInt);
+        scrabbleString expectedInt = TypeFactory.createSString(string.toString() + newInt.getValue());
         assertEquals(expectedInt, sumInt);
 
-        var sumBin = string.sum(newBinary);
-        scrabbleString expectedBin = new scrabbleString(string.toString() + newBinary.getValue());
+        var sumBin = string.concatenate(newBinary);
+        scrabbleString expectedBin = TypeFactory.createSString(string.toString() + newBinary.getValue());
         assertEquals(expectedBin, sumBin);
     }
 }

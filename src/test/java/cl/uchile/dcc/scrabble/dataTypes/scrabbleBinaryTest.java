@@ -31,7 +31,7 @@ class scrabbleBinaryTest {
             int n = rng.nextInt(2);
             binValue += Integer.toString(n);
         }
-        bin = new scrabbleBinary(binValue);
+        bin = TypeFactory.createSBinary(binValue);
     }
 
     /**
@@ -40,7 +40,7 @@ class scrabbleBinaryTest {
      */
     @RepeatedTest(N)
     void BinaryTest(){
-        var expectedBin = new scrabbleBinary(binValue);
+        var expectedBin = TypeFactory.createSBinary(binValue);
         assertEquals(expectedBin, bin);
         assertEquals(expectedBin.hashCode(), bin.hashCode());
     }
@@ -53,9 +53,9 @@ class scrabbleBinaryTest {
             int n = rng.nextInt(2);
             newBinValue += Integer.toString(n);
         }
-        scrabbleBinary newBin = new scrabbleBinary("");
+        scrabbleBinary newBin = TypeFactory.createSBinary("");
         newBin.setValue(newBinValue);
-        assertEquals(new scrabbleBinary(newBinValue), newBin);
+        assertEquals(TypeFactory.createSBinary(newBinValue), newBin);
     }
 
 
@@ -74,7 +74,7 @@ class scrabbleBinaryTest {
     @RepeatedTest(N)
     void toScrabStringTest(){
         var scrabString = bin.toScrabString();
-        assertEquals(new scrabbleString(bin.getValue()), scrabString);
+        assertEquals(TypeFactory.createSString(bin.getValue()), scrabString);
     }
 
     /**
@@ -97,7 +97,7 @@ class scrabbleBinaryTest {
         }
         var expected = Integer.parseInt(value,2);
         var scrabInt = bin.toScrabInt();
-        assertEquals(new scrabbleInt(expected), scrabInt);
+        assertEquals(TypeFactory.createSInt(expected), scrabInt);
     }
 
     /**
@@ -112,7 +112,7 @@ class scrabbleBinaryTest {
         }
         var expected = Integer.parseInt(value,2);
         var scrabFloat = bin.toScrabFloat();
-        assertEquals(new scrabbleFloat(expected), scrabFloat);
+        assertEquals(TypeFactory.createSFloat(expected), scrabFloat);
     }
 
     /**
@@ -120,7 +120,7 @@ class scrabbleBinaryTest {
      */
     @RepeatedTest(N)
     void toScrabBinaryTest(){
-        var expectedBin = new scrabbleBinary(binValue);
+        var expectedBin = TypeFactory.createSBinary(binValue);
         var scrabBin = bin.toScrabBinary();
         assertEquals(expectedBin.toScrabBinary(), scrabBin);
     }
@@ -132,7 +132,7 @@ class scrabbleBinaryTest {
     void negationTest(){
         String noBin = bin.getValue();
         noBin = noBin.replace('0', '2').replace('1','0').replace('2','1');
-        assertEquals(new scrabbleBinary(noBin), bin.negation());
+        assertEquals(TypeFactory.createSBinary(noBin), bin.negation());
     }
 
     /**
@@ -140,10 +140,10 @@ class scrabbleBinaryTest {
      */
     @RepeatedTest(N)
     void conjTest(){
-        scrabbleBool T = new scrabbleBool(true);
-        scrabbleBool F = new scrabbleBool(false);
+        scrabbleBool T = TypeFactory.createSBool(true);
+        scrabbleBool F = TypeFactory.createSBool(false);
         assertEquals(bin, bin.conj(T));
-        assertEquals(new scrabbleBinary(bin.getValue().replace('1','0')), bin.conj(F));
+        assertEquals(TypeFactory.createSBinary(bin.getValue().replace('1','0')), bin.conj(F));
 
         String value = "";
         for (int i=0; i<strSize; i++){
@@ -151,10 +151,10 @@ class scrabbleBinaryTest {
             value += Integer.toString(n);
         }
 
-        scrabbleBinary newBin = new scrabbleBinary(value);
+        scrabbleBinary newBin = TypeFactory.createSBinary(value);
         int x = newBin.toScrabInt().getValue();
         int y = bin.toScrabInt().getValue();
-        scrabbleInt z = new scrabbleInt(x & y);
+        scrabbleInt z = TypeFactory.createSInt(x & y);
         assertEquals(z.toScrabBinary(), bin.conj(newBin));
     }
 
@@ -164,10 +164,10 @@ class scrabbleBinaryTest {
      */
     @RepeatedTest(N)
     void disjTest(){
-        scrabbleBool T = new scrabbleBool(true);
-        scrabbleBool F = new scrabbleBool(false);
+        scrabbleBool T = TypeFactory.createSBool(true);
+        scrabbleBool F = TypeFactory.createSBool(false);
         assertEquals(bin, bin.disj(F));
-        assertEquals(new scrabbleBinary(bin.getValue().replace('0','1')), bin.disj(T));
+        assertEquals(TypeFactory.createSBinary(bin.getValue().replace('0','1')), bin.disj(T));
 
         String value = "";
         for (int i=0; i<strSize; i++){
@@ -175,10 +175,10 @@ class scrabbleBinaryTest {
             value += Integer.toString(n);
         }
 
-        scrabbleBinary newBin = new scrabbleBinary(value);
+        scrabbleBinary newBin = TypeFactory.createSBinary(value);
         int x = newBin.toScrabInt().getValue();
         int y = bin.toScrabInt().getValue();
-        scrabbleInt z = new scrabbleInt(x | y);
+        scrabbleInt z = TypeFactory.createSInt(x | y);
         assertEquals(z.toScrabBinary(), bin.disj(newBin));
     }
 
@@ -195,8 +195,8 @@ class scrabbleBinaryTest {
         }
         var binInt = Integer.parseInt(value,2);
 
-        scrabbleInt n = new scrabbleInt(nInt);
-        scrabbleInt nSuma = new scrabbleInt(binInt + nInt);
+        scrabbleInt n = TypeFactory.createSInt(nInt);
+        scrabbleInt nSuma = TypeFactory.createSInt(binInt + nInt);
         assertEquals(nSuma.toScrabBinary(), bin.sum(n));
 
         String newvalue = "";
@@ -205,14 +205,14 @@ class scrabbleBinaryTest {
             int x = rng.nextInt(2);
             newvalue += Integer.toString(x);
         }
-        scrabbleBinary newbin = new scrabbleBinary(newvalue);
+        scrabbleBinary newbin = TypeFactory.createSBinary(newvalue);
 
         if (newvalue.charAt(0) == '1') {
             newvalue = newbin.twosComplement().getValue();
             newvalue = "-" + newvalue;
         }
         var newint = Integer.parseInt(newvalue,2);
-        scrabbleInt nSuma2 = new scrabbleInt(binInt + newint);
+        scrabbleInt nSuma2 = TypeFactory.createSInt(binInt + newint);
         assertEquals(nSuma2.toScrabBinary(), bin.sum(newbin));
     }
 
@@ -229,8 +229,8 @@ class scrabbleBinaryTest {
         }
         var binInt = Integer.parseInt(value,2);
 
-        scrabbleInt n = new scrabbleInt(nInt);
-        scrabbleInt nSuma = new scrabbleInt(binInt - nInt);
+        scrabbleInt n = TypeFactory.createSInt(nInt);
+        scrabbleInt nSuma = TypeFactory.createSInt(binInt - nInt);
         assertEquals(nSuma.toScrabBinary(), bin.subs(n));
 
         String newvalue = "";
@@ -239,14 +239,14 @@ class scrabbleBinaryTest {
             int x = rng.nextInt(2);
             newvalue += Integer.toString(x);
         }
-        scrabbleBinary newbin = new scrabbleBinary(newvalue);
+        scrabbleBinary newbin = TypeFactory.createSBinary(newvalue);
 
         if (newvalue.charAt(0) == '1') {
             newvalue = newbin.twosComplement().getValue();
             newvalue = "-" + newvalue;
         }
         var newint = Integer.parseInt(newvalue,2);
-        scrabbleInt nSuma2 = new scrabbleInt(binInt - newint);
+        scrabbleInt nSuma2 = TypeFactory.createSInt(binInt - newint);
         assertEquals(nSuma2.toScrabBinary(), bin.subs(newbin));
     }
 
@@ -263,8 +263,8 @@ class scrabbleBinaryTest {
         }
         var binInt = Integer.parseInt(value,2);
 
-        scrabbleInt n = new scrabbleInt(nInt);
-        scrabbleInt nSuma = new scrabbleInt(binInt * nInt);
+        scrabbleInt n = TypeFactory.createSInt(nInt);
+        scrabbleInt nSuma = TypeFactory.createSInt(binInt * nInt);
         assertEquals(nSuma.toScrabBinary(), bin.mult(n));
 
         String newvalue = "";
@@ -273,14 +273,14 @@ class scrabbleBinaryTest {
             int x = rng.nextInt(2);
             newvalue += Integer.toString(x);
         }
-        scrabbleBinary newbin = new scrabbleBinary(newvalue);
+        scrabbleBinary newbin = TypeFactory.createSBinary(newvalue);
 
         if (newvalue.charAt(0) == '1') {
             newvalue = newbin.twosComplement().getValue();
             newvalue = "-" + newvalue;
         }
         var newint = Integer.parseInt(newvalue,2);
-        scrabbleInt nSuma2 = new scrabbleInt(binInt * newint);
+        scrabbleInt nSuma2 = TypeFactory.createSInt(binInt * newint);
         assertEquals(nSuma2.toScrabBinary(), bin.mult(newbin));
     }
 
@@ -300,8 +300,8 @@ class scrabbleBinaryTest {
         }
         var binInt = Integer.parseInt(value,2);
 
-        scrabbleInt n = new scrabbleInt(nInt);
-        scrabbleInt nSuma = new scrabbleInt(binInt / nInt);
+        scrabbleInt n = TypeFactory.createSInt(nInt);
+        scrabbleInt nSuma = TypeFactory.createSInt(binInt / nInt);
         assertEquals(nSuma.toScrabBinary(), bin.div(n));
 
         String newvalue = "";
@@ -313,14 +313,14 @@ class scrabbleBinaryTest {
             }
         } while (Integer.parseInt(newvalue,2) == 0);
 
-        scrabbleBinary newbin = new scrabbleBinary(newvalue);
+        scrabbleBinary newbin = TypeFactory.createSBinary(newvalue);
 
         if (newvalue.charAt(0) == '1') {
             newvalue = newbin.twosComplement().getValue();
             newvalue = "-" + newvalue;
         }
         var newint = Integer.parseInt(newvalue,2);
-        scrabbleInt nSuma2 = new scrabbleInt(binInt / newint);
+        scrabbleInt nSuma2 = TypeFactory.createSInt(binInt / newint);
         assertEquals(nSuma2.toScrabBinary(), bin.div(newbin));
     }
 
