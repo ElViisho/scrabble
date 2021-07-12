@@ -41,14 +41,14 @@ public class BasicMathOperationsTest {
         rng = new Random(seed);
 
         int nValue = rng.nextInt();
-        n = new scrabbleInt(nValue);
+        n = TypeFactory.createSInt(nValue);
         nValue = rng.nextInt();
-        n2 = new scrabbleInt(nValue);
+        n2 = TypeFactory.createSInt(nValue);
 
         double xValue = rng.nextDouble();
-        x = new scrabbleFloat(xValue);
+        x = TypeFactory.createSFloat(xValue);
         xValue = rng.nextDouble();
-        x2 = new scrabbleFloat(xValue);
+        x2 = TypeFactory.createSFloat(xValue);
 
         String binValue = "";
         strSize = rng.nextInt(20) + 1;
@@ -56,20 +56,20 @@ public class BasicMathOperationsTest {
             int n = rng.nextInt(2);
             binValue += Integer.toString(n);
         }
-        bin = new scrabbleBinary(binValue);
+        bin = TypeFactory.createSBinary(binValue);
         binValue = "";
         for (int i = 0; i < strSize; i++) {
             int n = rng.nextInt(2);
             binValue += Integer.toString(n);
         }
-        bin2 = new scrabbleBinary(binValue);
+        bin2 = TypeFactory.createSBinary(binValue);
 
         String str = randomAlphanumeric(strSize);
-        string = new scrabbleString(str);
+        string = TypeFactory.createSString(str);
         str = randomAlphanumeric(strSize);
-        string2 = new scrabbleString(str);
+        string2 = TypeFactory.createSString(str);
 
-        bool = new scrabbleBool(rng.nextBoolean());
+        bool = TypeFactory.createSBool(rng.nextBoolean());
     }
 
     /**
@@ -172,13 +172,13 @@ public class BasicMathOperationsTest {
     @RepeatedTest(N)
     void Divtest() {
         do {
-            n2 = new scrabbleInt(rng.nextInt());
+            n2 = TypeFactory.createSInt(rng.nextInt());
         } while (n2.getValue() == 0);
         var a = new Div(n, n2);
         assertEquals(n.div(n2), a.eval());
 
         do {
-            x2 = new scrabbleFloat(rng.nextDouble());
+            x2 = TypeFactory.createSFloat(rng.nextDouble());
         } while (x2.getValue() == 0);
         var b = new Div(x, x2);
         assertEquals(x.div(x2), b.eval());
@@ -190,13 +190,13 @@ public class BasicMathOperationsTest {
                 int n = rng.nextInt(2);
                 binValue += Integer.toString(n);
             }
-            bin2 = new scrabbleBinary(binValue);
-        } while (bin2.equals(new scrabbleBinary("0")));
+            bin2 = TypeFactory.createSBinary(binValue);
+        } while (bin2.equals(TypeFactory.createSBinary("0")));
         var c = new Div(bin, bin2);
         assertEquals(bin.div(bin2), c.eval());
 
         do {
-            x = new scrabbleFloat(rng.nextDouble());
+            x = TypeFactory.createSFloat(rng.nextDouble());
         } while (x.getValue() == 0);
         var d = new Div(n, x);
         assertEquals(n.div(x), d.eval());
@@ -208,13 +208,13 @@ public class BasicMathOperationsTest {
                 int n = rng.nextInt(2);
                 binValue += Integer.toString(n);
             }
-            bin = new scrabbleBinary(binValue);
-        } while (bin.equals(new scrabbleBinary("0")));
+            bin = TypeFactory.createSBinary(binValue);
+        } while (bin.equals(TypeFactory.createSBinary("0")));
         var e = new Div(n, bin);
         assertEquals(n.div(bin), e.eval());
 
         do {
-            n = new scrabbleInt(rng.nextInt());
+            n = TypeFactory.createSInt(rng.nextInt());
         } while (n.getValue() == 0);
         var f = new Div(x, n);
         assertEquals(x.div(n), f.eval());

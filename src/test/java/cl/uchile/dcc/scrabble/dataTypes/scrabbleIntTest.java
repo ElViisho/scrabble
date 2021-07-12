@@ -25,7 +25,7 @@ class scrabbleIntTest {
         seed = new Random().nextInt();
         rng = new Random(seed);
         nValue = rng.nextInt();
-        n = new scrabbleInt(nValue);
+        n = TypeFactory.createSInt(nValue);
     }
 
     /**
@@ -35,22 +35,22 @@ class scrabbleIntTest {
      */
     @RepeatedTest(N)
     void IntTest(){
-        var expectedN = new scrabbleInt(nValue);
+        var expectedN = TypeFactory.createSInt(nValue);
         assertEquals(expectedN, n);
         int newN;
         do {
             newN = rng.nextInt();
         } while (newN == nValue);
-        var differentN = new scrabbleInt(newN);
+        var differentN = TypeFactory.createSInt(newN);
         assertNotEquals(differentN, n);
     }
 
     @RepeatedTest(N)
     void valueSetterTest(){
         int newNValue = rng.nextInt();
-        scrabbleInt newN = new scrabbleInt(0);
+        scrabbleInt newN = TypeFactory.createSInt(0);
         newN.setValue(newNValue);
-        assertEquals(new scrabbleInt(newNValue), newN);
+        assertEquals(TypeFactory.createSInt(newNValue), newN);
     }
 
     /**
@@ -66,7 +66,7 @@ class scrabbleIntTest {
      */
     @RepeatedTest(N)
     void toScrabStringTest(){
-        var expected = new scrabbleString(String.valueOf(nValue));
+        var expected = TypeFactory.createSString(String.valueOf(nValue));
         assertEquals(expected, n.toScrabString());
     }
 
@@ -83,7 +83,7 @@ class scrabbleIntTest {
      */
     @RepeatedTest(N)
     void toScrabFloatTest(){
-        var expected = new scrabbleFloat(nValue);
+        var expected = TypeFactory.createSFloat(nValue);
         assertEquals(expected, n.toScrabFloat());
     }
 
@@ -102,7 +102,7 @@ class scrabbleIntTest {
     void toScrabBinaryTest(){
         String s = Integer.toBinaryString(nValue);
         if (nValue > 0) s = '0' + s;
-        scrabbleBinary expectedBin = new scrabbleBinary(s);
+        scrabbleBinary expectedBin = TypeFactory.createSBinary(s);
         assertEquals(expectedBin, n.toScrabBinary());
     }
 
@@ -112,12 +112,12 @@ class scrabbleIntTest {
     @RepeatedTest(N)
     void sumTest(){
         int nInt = rng.nextInt();
-        var a = n.sum(new scrabbleInt(nInt));
-        assertEquals(new scrabbleInt(nValue + nInt), a);
+        var a = n.sum(TypeFactory.createSInt(nInt));
+        assertEquals(TypeFactory.createSInt(nValue + nInt), a);
 
         double nDouble = rng.nextDouble();
-        var b = n.sum(new scrabbleFloat(nDouble));
-        assertEquals(new scrabbleFloat(nValue + nDouble), b);
+        var b = n.sum(TypeFactory.createSFloat(nDouble));
+        assertEquals(TypeFactory.createSFloat(nValue + nDouble), b);
 
         String value = "";
         int strSize = rng.nextInt(20) + 1;
@@ -125,7 +125,7 @@ class scrabbleIntTest {
             int n = rng.nextInt(2);
             value += Integer.toString(n);
         }
-        scrabbleBinary bin = new scrabbleBinary(value);
+        scrabbleBinary bin = TypeFactory.createSBinary(value);
 
         if (value.charAt(0) == '1') {
             value = bin.twosComplement().getValue();
@@ -133,7 +133,7 @@ class scrabbleIntTest {
         }
         var expected = Integer.parseInt(value,2);
 
-        assertEquals(new scrabbleInt(nValue + expected), n.sum(bin));
+        assertEquals(TypeFactory.createSInt(nValue + expected), n.sum(bin));
     }
 
     /**
@@ -142,12 +142,12 @@ class scrabbleIntTest {
     @RepeatedTest(N)
     void subsTest(){
         int nInt = rng.nextInt();
-        var a = n.subs(new scrabbleInt(nInt));
-        assertEquals(new scrabbleInt(nValue - nInt), a);
+        var a = n.subs(TypeFactory.createSInt(nInt));
+        assertEquals(TypeFactory.createSInt(nValue - nInt), a);
 
         double nDouble = rng.nextDouble();
-        var b = n.subs(new scrabbleFloat(nDouble));
-        assertEquals(new scrabbleFloat(nValue - nDouble), b);
+        var b = n.subs(TypeFactory.createSFloat(nDouble));
+        assertEquals(TypeFactory.createSFloat(nValue - nDouble), b);
 
         String value = "";
         int strSize = rng.nextInt(20) + 1;
@@ -155,7 +155,7 @@ class scrabbleIntTest {
             int n = rng.nextInt(2);
             value += Integer.toString(n);
         }
-        scrabbleBinary bin = new scrabbleBinary(value);
+        scrabbleBinary bin = TypeFactory.createSBinary(value);
 
         if (value.charAt(0) == '1') {
             value = bin.twosComplement().getValue();
@@ -163,7 +163,7 @@ class scrabbleIntTest {
         }
         var expected = Integer.parseInt(value,2);
 
-        assertEquals(new scrabbleInt(nValue - expected), n.subs(bin));
+        assertEquals(TypeFactory.createSInt(nValue - expected), n.subs(bin));
     }
 
     /**
@@ -172,12 +172,12 @@ class scrabbleIntTest {
     @RepeatedTest(N)
     void multTest(){
         int nInt = rng.nextInt();
-        var a = n.mult(new scrabbleInt(nInt));
-        assertEquals(new scrabbleInt(nValue * nInt), a);
+        var a = n.mult(TypeFactory.createSInt(nInt));
+        assertEquals(TypeFactory.createSInt(nValue * nInt), a);
 
         double nDouble = rng.nextDouble();
-        var b = n.mult(new scrabbleFloat(nDouble));
-        assertEquals(new scrabbleFloat(nValue * nDouble), b);
+        var b = n.mult(TypeFactory.createSFloat(nDouble));
+        assertEquals(TypeFactory.createSFloat(nValue * nDouble), b);
 
         String value = "";
         int strSize = rng.nextInt(20) + 1;
@@ -185,7 +185,7 @@ class scrabbleIntTest {
             int n = rng.nextInt(2);
             value += Integer.toString(n);
         }
-        scrabbleBinary bin = new scrabbleBinary(value);
+        scrabbleBinary bin = TypeFactory.createSBinary(value);
 
         if (value.charAt(0) == '1') {
             value = bin.twosComplement().getValue();
@@ -193,7 +193,7 @@ class scrabbleIntTest {
         }
         var expected = Integer.parseInt(value,2);
 
-        assertEquals(new scrabbleInt(nValue * expected), n.mult(bin));
+        assertEquals(TypeFactory.createSInt(nValue * expected), n.mult(bin));
     }
 
     /**
@@ -205,15 +205,15 @@ class scrabbleIntTest {
         do {
             nInt = rng.nextInt();
         } while (nInt == 0);
-        var a = n.div(new scrabbleInt(nInt));
-        assertEquals(new scrabbleInt(nValue / nInt), a);
+        var a = n.div(TypeFactory.createSInt(nInt));
+        assertEquals(TypeFactory.createSInt(nValue / nInt), a);
 
         double nDouble;
         do {
             nDouble = rng.nextDouble();
         } while (nDouble == 0);
-        var b = n.div(new scrabbleFloat(nDouble));
-        assertEquals(new scrabbleFloat(nValue / nDouble), b);
+        var b = n.div(TypeFactory.createSFloat(nDouble));
+        assertEquals(TypeFactory.createSFloat(nValue / nDouble), b);
 
         String value = "";
         int strSize = rng.nextInt(20) + 1;
@@ -223,7 +223,7 @@ class scrabbleIntTest {
                 value += Integer.toString(n);
             }
         } while (Integer.parseInt(value,2) == 0);
-        scrabbleBinary bin = new scrabbleBinary(value);
+        scrabbleBinary bin = TypeFactory.createSBinary(value);
 
         if (value.charAt(0) == '1') {
             value = bin.twosComplement().getValue();
@@ -231,7 +231,7 @@ class scrabbleIntTest {
         }
         var expected = Integer.parseInt(value,2);
 
-        assertEquals(new scrabbleInt(nValue / expected), n.div(bin));
+        assertEquals(TypeFactory.createSInt(nValue / expected), n.div(bin));
     }
 
 }

@@ -34,10 +34,10 @@ public class NullTest {
         rng = new Random(seed);
 
         int nValue = rng.nextInt();
-        n = new scrabbleInt(nValue);
+        n = TypeFactory.createSInt(nValue);
 
         double xValue = rng.nextDouble();
-        x = new scrabbleFloat(xValue);
+        x = TypeFactory.createSFloat(xValue);
 
         String binValue = "";
         strSize = rng.nextInt(20) + 1;
@@ -45,12 +45,12 @@ public class NullTest {
             int n = rng.nextInt(2);
             binValue += Integer.toString(n);
         }
-        bin = new scrabbleBinary(binValue);
+        bin = TypeFactory.createSBinary(binValue);
 
         String str = randomAlphanumeric(strSize);
-        string = new scrabbleString(str);
+        string = TypeFactory.createSString(str);
 
-        bool = new scrabbleBool(rng.nextBoolean());
+        bool = TypeFactory.createSBool(rng.nextBoolean());
     }
 
     /**

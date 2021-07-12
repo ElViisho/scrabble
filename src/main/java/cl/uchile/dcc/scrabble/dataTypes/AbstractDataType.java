@@ -100,7 +100,7 @@ public abstract class AbstractDataType implements IdataTypes{
      * @return the concatenated string
      */
     public scrabbleString sumByString(scrabbleString s){
-        return new scrabbleString(s.getValue() + this.toString());
+        return TypeFactory.createSString(s.getValue() + this.toString());
     }
 
     /**

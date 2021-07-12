@@ -1,7 +1,6 @@
 package cl.uchile.dcc.scrabble.composite;
 
-import cl.uchile.dcc.scrabble.dataTypes.scrabbleBinary;
-import cl.uchile.dcc.scrabble.dataTypes.scrabbleBool;
+import cl.uchile.dcc.scrabble.dataTypes.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
@@ -34,9 +33,9 @@ public class BasicLogicTest {
         seed = new Random().nextInt();
         rng = new Random();
         boolValue = rng.nextBoolean();
-        bool = new scrabbleBool(boolValue);
+        bool = TypeFactory.createSBool(boolValue);
         boolValue = rng.nextBoolean();
-        bool2 = new scrabbleBool(boolValue);
+        bool2 = TypeFactory.createSBool(boolValue);
 
         binValue = "";
         strSize = rng.nextInt(20) + 1;
@@ -44,14 +43,14 @@ public class BasicLogicTest {
             int n = rng.nextInt(2);
             binValue += Integer.toString(n);
         }
-        bin = new scrabbleBinary(binValue);
+        bin = TypeFactory.createSBinary(binValue);
 
         binValue = "";
         for (int i=0; i<strSize; i++){
             int n = rng.nextInt(2);
             binValue += Integer.toString(n);
         }
-        bin2 = new scrabbleBinary(binValue);
+        bin2 = TypeFactory.createSBinary(binValue);
     }
 
     /**

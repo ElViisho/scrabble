@@ -38,7 +38,7 @@ public class scrabbleFloat extends AbstractNumber {
     @Override
     public scrabbleString toScrabString() {
         String s = String.valueOf(value);
-        return new scrabbleString(s);
+        return TypeFactory.createSString(s);
     }
 
     /**
@@ -97,7 +97,7 @@ public class scrabbleFloat extends AbstractNumber {
      */
     @Override
     public scrabbleFloat sumByInt(scrabbleInt n){
-        return new scrabbleFloat(n.getValue() + this.value);
+        return TypeFactory.createSFloat(n.getValue() + this.value);
     }
 
     /**
@@ -107,7 +107,7 @@ public class scrabbleFloat extends AbstractNumber {
      */
     @Override
     public scrabbleFloat subsByInt(scrabbleInt n){
-        return new scrabbleFloat(n.getValue() - this.value);
+        return TypeFactory.createSFloat(n.getValue() - this.value);
     }
 
     /**
@@ -117,7 +117,7 @@ public class scrabbleFloat extends AbstractNumber {
      */
     @Override
     public scrabbleFloat multByInt(scrabbleInt n){
-        return new scrabbleFloat(n.getValue() * this.value);
+        return TypeFactory.createSFloat(n.getValue() * this.value);
     }
 
     /**
@@ -127,7 +127,7 @@ public class scrabbleFloat extends AbstractNumber {
      */
     @Override
     public scrabbleFloat divByInt(scrabbleInt n){
-        return new scrabbleFloat(n.getValue() / this.value);
+        return TypeFactory.createSFloat(n.getValue() / this.value);
     }
 
 

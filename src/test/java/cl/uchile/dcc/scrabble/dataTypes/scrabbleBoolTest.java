@@ -24,33 +24,25 @@ class scrabbleBoolTest {
         seed = new Random().nextInt();
         rng = new Random();
         boolValue = rng.nextBoolean();
-        bool = new scrabbleBool(boolValue);
+        bool = TypeFactory.createSBool(boolValue);
     }
 
     /**
      * The different tests that check that two instances that have the same value
-     * are considered equal, two with different values are considered different,
-     * and also checks the toString method
+     * are considered equal
      */
     @RepeatedTest(N)
     void boolTest() {
-        var expectedBool = new scrabbleBool(boolValue);
+        var expectedBool = TypeFactory.createSBool(boolValue);
         assertEquals(expectedBool, bool);
-        boolean newBool;
-        do {
-            newBool = rng.nextBoolean();
-        } while (newBool == boolValue);
-        var differentBool = new scrabbleBool(newBool);
-        assertNotEquals(differentBool, bool);
-        assertNotEquals(differentBool.toString(), bool.toString());
     }
 
     @RepeatedTest(N)
     void valueSetterTest(){
         boolean newBoolValue = rng.nextBoolean();
-        scrabbleBool newBool = new scrabbleBool(false);
+        scrabbleBool newBool = TypeFactory.createSBool(false);
         newBool.setValue(newBoolValue);
-        assertEquals(new scrabbleBool(newBoolValue), newBool);
+        assertEquals(TypeFactory.createSBool(newBoolValue), newBool);
     }
 
     /**
@@ -66,7 +58,7 @@ class scrabbleBoolTest {
      */
     @RepeatedTest(N)
     void toScrabStringTest(){
-        var expected = new scrabbleString(String.valueOf(boolValue));
+        var expected = TypeFactory.createSString(String.valueOf(boolValue));
         assertEquals(expected, bool.toScrabString());
     }
 
@@ -104,8 +96,8 @@ class scrabbleBoolTest {
 
     @Test
     void negationTest(){
-        assertFalse((new scrabbleBool(true)).negation().getValue());
-        assertTrue((new scrabbleBool(false)).negation().getValue());
+        assertFalse((TypeFactory.createSBool(true)).negation().getValue());
+        assertTrue((TypeFactory.createSBool(false)).negation().getValue());
     }
 
     /**
@@ -113,13 +105,13 @@ class scrabbleBoolTest {
      */
     @RepeatedTest(N)
     void conjTest(){
-        scrabbleBool T = new scrabbleBool(true);
-        scrabbleBool F = new scrabbleBool(false);
+        scrabbleBool T = TypeFactory.createSBool(true);
+        scrabbleBool F = TypeFactory.createSBool(false);
 
-        assertTrue(T.conj(new scrabbleBool(true)).toScrabBool().getValue());
-        assertFalse(F.conj(new scrabbleBool(true)).toScrabBool().getValue());
-        assertFalse(T.conj(new scrabbleBool(false)).toScrabBool().getValue());
-        assertFalse(F.conj(new scrabbleBool(false)).toScrabBool().getValue());
+        assertTrue(T.conj(TypeFactory.createSBool(true)).toScrabBool().getValue());
+        assertFalse(F.conj(TypeFactory.createSBool(true)).toScrabBool().getValue());
+        assertFalse(T.conj(TypeFactory.createSBool(false)).toScrabBool().getValue());
+        assertFalse(F.conj(TypeFactory.createSBool(false)).toScrabBool().getValue());
 
         String value = "";
         int strSize = rng.nextInt(20) + 1;
@@ -127,12 +119,12 @@ class scrabbleBoolTest {
             int n = rng.nextInt(2);
             value += Integer.toString(n);
         }
-        scrabbleBinary bin = new scrabbleBinary(value);
+        scrabbleBinary bin = TypeFactory.createSBinary(value);
         String otherValue = "";
         for (int i=0; i<strSize; i++){
             otherValue += '0';
         }
-        scrabbleBinary expected = new scrabbleBinary(otherValue);
+        scrabbleBinary expected = TypeFactory.createSBinary(otherValue);
 
         assertEquals(bin, T.conj(bin));
         assertEquals(expected, F.conj(bin));
@@ -143,13 +135,13 @@ class scrabbleBoolTest {
      */
     @RepeatedTest(N)
     void disjTest(){
-        scrabbleBool T = new scrabbleBool(true);
-        scrabbleBool F = new scrabbleBool(false);
+        scrabbleBool T = TypeFactory.createSBool(true);
+        scrabbleBool F = TypeFactory.createSBool(false);
 
-        assertTrue(T.disj(new scrabbleBool(true)).toScrabBool().getValue());
-        assertTrue(F.disj(new scrabbleBool(true)).toScrabBool().getValue());
-        assertTrue(T.disj(new scrabbleBool(false)).toScrabBool().getValue());
-        assertFalse(F.disj(new scrabbleBool(false)).toScrabBool().getValue());
+        assertTrue(T.disj(TypeFactory.createSBool(true)).toScrabBool().getValue());
+        assertTrue(F.disj(TypeFactory.createSBool(true)).toScrabBool().getValue());
+        assertTrue(T.disj(TypeFactory.createSBool(false)).toScrabBool().getValue());
+        assertFalse(F.disj(TypeFactory.createSBool(false)).toScrabBool().getValue());
 
         String value = "";
         int strSize = rng.nextInt(20) + 1;
@@ -157,12 +149,12 @@ class scrabbleBoolTest {
             int n = rng.nextInt(2);
             value += Integer.toString(n);
         }
-        scrabbleBinary bin = new scrabbleBinary(value);
+        scrabbleBinary bin = TypeFactory.createSBinary(value);
         String otherValue = "";
         for (int i=0; i<strSize; i++){
             otherValue += '1';
         }
-        scrabbleBinary expected = new scrabbleBinary(otherValue);
+        scrabbleBinary expected = TypeFactory.createSBinary(otherValue);
 
         assertEquals(bin, F.disj(bin));
         assertEquals(expected, T.disj(bin));
