@@ -9,6 +9,9 @@ import java.util.Random;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+/**
+ * Test that check that all operations that are not valid return null.
+ */
 public class NullTest {
     private scrabbleInt n;
 
@@ -52,10 +55,6 @@ public class NullTest {
 
         bool = TypeFactory.createSBool(rng.nextBoolean());
     }
-
-    /**
-     * Test from now onward check that all operations that are not valid return null.
-     */
 
 
     @RepeatedTest(N)
