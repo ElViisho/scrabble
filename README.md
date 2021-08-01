@@ -13,7 +13,14 @@ _University of Chile_.
 
 ---
 
-## Uso
+## Uso interfaz gráfica
+Se abre la carpeta como proyecto de IntelliJ. Dentro se navega a la carpeta main y dentro de ella, se va
+al paquete gui. Dentro se abre la clase Scrabble y se corre el programa con Gradle. En la interfaz hay
+varios botones, divididos entre operaciones y datos. Los botones de operaciones no quedaron implementados.
+Los de los datos, al apretarlos se genera un campo de texto donde se puede ingresar el valor que se quiere
+que tenga, y luego de confirmar, se genera el dato con el valor. Está el botón `C` que borra todo lo ingresado.
+
+## Uso tests
 Se abre la carpeta como proyecto de IntelliJ. Dentro se navega a la carpeta test y dentro de ella hay dos 
 paquetes. El paquete dataTypes contiene 5 clases de testeo, que prueban las funcionalidades de los tipos
 de scrabble:
@@ -63,5 +70,7 @@ interfaz `Component` la cual es implementada por todas las clases que serán ins
 `Operation` la cual es implementada por todas las clases que son operaciones, siendo estas los nodos compuestos del
 *composite*.
 
-
-
+Para la interfaz gráfica se utilizó el patrón *Modelo-Vista-Controlador*. Siendo el *Modelo* el paquete dataTypes, el cual
+contiene toda la lógica de funcionamiento del programa. La *Vista* es el paquete gui, la cual muestra toda la información
+necesaria al usuario del programa. Y por último, el *Controlador* es el paquete composite, el cual se encarga de generar
+la comunicación entre el *Modelo* y la *Vista*.
